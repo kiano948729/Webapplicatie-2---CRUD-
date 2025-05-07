@@ -3,7 +3,7 @@ global $current_user;
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <nav>
-    <div class="index-nav   ">
+    <div class="index-nav">
         <div>
             <a href="../index.php">logo</a>
         </div>
