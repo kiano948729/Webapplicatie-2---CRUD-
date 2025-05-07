@@ -1,3 +1,7 @@
+:root {
+    --grijs: #e1e1e1;
+}
+
 .index-nav {
     display: flex;
     justify-content: space-between;
@@ -6,16 +10,18 @@
     margin: 0 auto;
     padding: 10px 0;
 }
+
 .index-nav div a:first-child {
     font-size: 24px;
     font-weight: bold;
     color: #66A9F0;
     text-decoration: none;
     transition: all 0.3s ease;
-    
-    
+
+
 }
-.index-main-nav{
+
+.index-main-nav {
     background-color: #f5f5f5;
     border-radius: 20px;
     padding: 10px;
@@ -24,6 +30,7 @@
 .index-nav div a:first-child:hover {
     color: #bde4a5;
 }
+
 .index-nav div a {
     font-size: 24px;
     font-weight: bold;
@@ -39,6 +46,7 @@
 .index-nav div a:hover {
     color: #bde4a5;
 }
+
 .index-nav div span,
 .index-nav div a {
     color: #66A9F0;
@@ -63,7 +71,7 @@
 }
 
 .index-nav div:last-child a:hover {
-    background: #e1e1e1;
+    background: var(--grijs);
     color: #2b431a;
 }
 
@@ -75,12 +83,303 @@
     background-attachment: fixed;
     height: 70vh;
 }
-.trip-advisor{
+
+.trip-advisor {
     display: flex;
     justify-content: center;
 }
-.trip-advisor h2{
-    background-color: #e1e1e1;
+
+.trip-advisor h2 {
+    background-color: var(--grijs);
     padding: 15px;
     border-radius: 20px;
+}
+
+.vakanties-main-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.vakanties-main-text h1,
+h3 {
+    display: flex;
+    justify-content: center;
+    color: var(--grijs);
+}
+
+.vakanties-main-blok {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vakanties-main-blok h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.input-rij {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.invoer-blok {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.invoer-blok label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.invoer-blok input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.filters label {
+    background: #f2f2f2;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filters input[type="radio"] {
+    display: none;
+}
+
+.zoek-knop {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.zoek-knop button {
+    background: #32cd32;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.vakanties-bestemming {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.titel-balk {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titel-balk h2 {
+    font-size: 28px;
+}
+
+.navigatie-knoppen {
+    display: flex;
+    gap: 8px;
+}
+
+.navigatie-knoppen button {
+    background: #eee;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.bestemming-lijst {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bestemming-kaart {
+    flex: 1 1 calc(25% - 20px);
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.bestemming-kaart img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.bestemming-kaart h3 {
+    margin: 10px 0 5px;
+}
+
+.bestemming-kaart p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.bestemming-kaart span {
+    font-weight: bold;
+    color: #444;
+}
+
+@media (max-width: 800px) {
+    .bestemming-kaart {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 500px) {
+    .bestemming-kaart {
+        flex: 1 1 100%;
+    }
+}
+
+.vakanties-explore-events {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header-rij {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header-rij h2 {
+    font-size: 28px;
+}
+
+.zoekfilter {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.zoekfilter input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 200px;
+}
+
+.zoekfilter button {
+    background-color: #32cd32;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.event-lijst {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.event-kaart {
+    flex: 1 1 calc(33.333% - 20px);
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.event-kaart:hover {
+    transform: translateY(-5px);
+}
+
+.event-kaart img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.event-info {
+    padding: 15px;
+}
+
+.event-info h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.event-prijs {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.event-info button {
+    background: #eee;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .event-kaart {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .event-kaart {
+        flex: 1 1 100%;
+    }
+
+    .zoekfilter input {
+        width: 100px;
+    }
 }
