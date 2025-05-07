@@ -1,4 +1,32 @@
+body,
+html {
+    margin: 0;
+}
+
 body {
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
+  }
+
+  .Afbeelding-Berg {
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/imageBerg.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .VakantieBanner {
+    width: 100%;
+    margin-top: 100px;
+    height: 100px;
+    background-color: #66a9f065;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Witte-Text {
+    color: rgb(255, 255, 255);
+    font-weight: 800;
   }
