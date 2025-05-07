@@ -33,13 +33,26 @@ if (isset($_SESSION['user_id'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-          rel="stylesheet">
+        rel="stylesheet">
 </head>
+
 <body>
-    <header>
-        <?php require_once("components/header.php")?>
-    </header>
-    <main>
+    <div class="vakanties-main">
+        <header>
+            <?php require_once("components/header.php") ?>
+        </header>
+        <main>
+            <div class="trip-advisor">
+                <h2>trip advisor</h2>
+            </div>
+            <div class="vakanties-main-text">
+                <h1>Ontdek de wereld zoals jij wilt.</h1>
+                <h3>reisbureau met een proffensiele aanpak zodat jij een zorgloze reis hebt!</h3>
+            </div>
+            <div>
+
+            </div>
+    </div>
     </main>
     <footer>
 
