@@ -3,23 +3,23 @@
 
     <div class="input-rij">
         <div class="invoer-blok">
-            <label for="locatie">Location</label>
-            <input type="text" id="locatie" name="locatie" placeholder="Type the destination">
+            <label for="locatie">Locatie</label>
+            <input type="text" id="locatie" name="locatie" placeholder="Bestemming">
         </div>
 
         <div class="invoer-blok">
-            <label for="check-in">Check in</label>
+            <label for="check-in">Inchecken</label>
             <input type="date" id="check-in" name="check-in">
         </div>
 
         <div class="invoer-blok">
-            <label for="check-out">Check out</label>
+            <label for="check-out">Uitchecken</label>
             <input type="date" id="check-out" name="check-out">
         </div>
 
         <div class="invoer-blok">
-            <label for="deelnemers">Participants</label>
-            <input type="number" id="deelnemers" name="deelnemers" placeholder="Add guests">
+            <label for="deelnemers">Personen</label>
+            <input type="number" id="deelnemers" name="deelnemers" placeholder="Reizigers">
         </div>
     </div>
 
@@ -38,6 +38,6 @@
     </div>
 
     <div class="zoek-knop">
-        <button type="submit">Search Properties</button>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Zoek</button>
     </div>
 </div>
