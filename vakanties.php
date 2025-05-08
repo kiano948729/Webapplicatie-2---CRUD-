@@ -14,6 +14,7 @@ if (isset($_SESSION['user_id'])) {
     $statement->execute([':id' => $_SESSION['user_id']]);
     $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@ if (isset($_SESSION['user_id'])) {
                 <h1>Ontdek de wereld zoals jij wilt.</h1>
                 <h3>reisbureau met een proffensiele aanpak zodat jij een zorgloze reis hebt!</h3>
             </div>
-            <?php  require_once("components/vakanties-blok.php")?>
+            <?php require_once("components/vakanties-blok.php") ?>
     </div>
     <div class="vakanties-bestemming">
         <div class="titel-balk">
@@ -59,7 +60,6 @@ if (isset($_SESSION['user_id'])) {
                 <button onclick="volgendeSlide()">→</button>
             </div>
         </div>
-        <!-- javascript moet nog worden aangepast ivm database reizen als dier zijn-->
         <div class="bestemming-lijst" id="bestemming-lijst">
             <!-- JavaScript vult hier de kaarten in -->
         </div>
@@ -74,49 +74,8 @@ if (isset($_SESSION['user_id'])) {
         </div>
 
         <div class="event-lijst">
-            <div class="event-kaart">
-                <img src="https://via.placeholder.com/300x180?text=Adventure" alt="Adventure">
-                <div class="event-info">
-                    <h3>Exploring the Hidden Wonders of the World Adventure</h3>
-                    <div class="event-meta">
-                        <span>Bangladesh</span>
-                        <span>July 3 to 7</span>
-                        <span>4.8 Rating</span>
-                    </div>
-                    <div class="event-prijs">$400 / Night <br><small>Including taxes and fees</small></div>
-                    <button>View Details</button>
-                </div>
-            </div>
-
-            <div class="event-kaart">
-                <img src="https://via.placeholder.com/300x180?text=Snowboard" alt="Snowboard">
-                <div class="event-info">
-                    <h3>Embark on a Cultural Journey Across Stunning Landscapes</h3>
-                    <div class="event-meta">
-                        <span> Bangladesh</span>
-                        <span>July 10 to 12</span>
-                        <span>4.6 Rating</span>
-                    </div>
-                    <div class="event-prijs">$320 / Night <br><small>Including taxes and fees</small></div>
-                    <button>View Details</button>
-                </div>
-            </div>
-
-            <div class="event-kaart">
-                <img src="https://via.placeholder.com/300x180?text=Mountains" alt="Mountains">
-                <div class="event-info">
-                    <h3>Discover Majestic Mountains and Breathtaking Views</h3>
-                    <div class="event-meta">
-                        <span>Bangladesh</span>
-                        <span>July 5 to 7</span>
-                        <span>4.9 Rating</span>
-                    </div>
-                    <div class="event-prijs">$450 / Night <br><small>Including taxes and fees</small></div>
-                    <button>View Details</button>
-                </div>
-            </div>
+            hier moeten alle accomodaties komen geen deals; met Filters    
         </div>
-    </div>
     </main>
     <footer>
 
