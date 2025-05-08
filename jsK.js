@@ -1,90 +1,55 @@
-const bestemmingen = [
-    {
-        img: 'https://via.placeholder.com/300x180?text=Thailand',
-        route: 'Dhaka → Thailand',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$475.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=Tokyo',
-        route: 'Dhaka → Tokyo',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$475.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=Chicago',
-        route: 'Dhaka → Chicago',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$475.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=Cox\'s+Bazar',
-        route: 'Dhaka → Cox\'s Bazar',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$475.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=Paris',
-        route: 'Dhaka → Paris',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$499.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=London',
-        route: 'Dhaka → London',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$520.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=New+York',
-        route: 'Dhaka → New York',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$530.00'
-    },
-    {
-        img: 'https://via.placeholder.com/300x180?text=Sydney',
-        route: 'Dhaka → Sydney',
-        datum: 'Fri May 21 - Mon Jun 10',
-        prijs: '$580.00'
-    }
-];
-
+let bestemmingen = [];
 let huidigeIndex = 0;
 
+// Functie om de bestemmingen op te halen
+function fetchBestemmingen() {
+    fetch('backend/fetch_bestemmingen.php')
+        .then(response => response.json())
+        .then(data => {
+            bestemmingen = data;
+            toonBestemmingen();  // Laat de eerste set bestemmingen zien
+        })
+        .catch(error => console.error('Fout bij het ophalen van bestemmingen:', error));
+}
+
+// Functie om de bestemmingen te tonen
 function toonBestemmingen() {
     const container = document.getElementById('bestemming-lijst');
-    container.innerHTML = '';
-    const zichtbaar = bestemmingen.slice(huidigeIndex, huidigeIndex + 4);
+    container.innerHTML = '';  // Maak de lijst leeg
+
+    const zichtbaar = bestemmingen.slice(huidigeIndex, huidigeIndex + 4); // Toon 4 bestemmingen tegelijk
     zichtbaar.forEach((bestemming) => {
         const kaart = document.createElement('div');
         kaart.className = 'bestemming-kaart';
         kaart.innerHTML = `
-        <img src="${bestemming.img}" alt="${bestemming.route}">
-        <h3>${bestemming.route}</h3>
-        <p>${bestemming.datum}</p>
-        <p>From <span>${bestemming.prijs}</span></p>
-      `;
+            <img src="${bestemming.photo_url}" alt="${bestemming.destination}">
+            <h3>${bestemming.destination}</h3>
+            <p>${bestemming.location}</p>
+            <p>From <span>${bestemming.price}</span></p>
+        `;
         container.appendChild(kaart);
     });
 }
 
+// Functie om naar de volgende set bestemmingen te gaan
 function volgendeSlide() {
     if (huidigeIndex + 4 < bestemmingen.length) {
-        huidigeIndex += 4;
+        huidigeIndex += 4;  // Ga verder naar de volgende 4 bestemmingen
     } else {
-        huidigeIndex = 0; // Reset naar begin
+        huidigeIndex = 0;  // Reset naar begin als we aan het einde zijn
     }
     toonBestemmingen();
 }
 
+// Functie om naar de vorige set bestemmingen te gaan
 function vorigeSlide() {
     if (huidigeIndex - 4 >= 0) {
-        huidigeIndex -= 4;
+        huidigeIndex -= 4;  // Ga naar de vorige 4 bestemmingen
     } else {
-        huidigeIndex = bestemmingen.length - 4;
+        huidigeIndex = bestemmingen.length - 4;  // Als we in het begin zitten, ga naar het einde
     }
     toonBestemmingen();
 }
 
-// Initieel tonen
-toonBestemmingen();
+// Zorg ervoor dat de bestemmingen worden opgehaald zodra de pagina wordt geladen
+document.addEventListener('DOMContentLoaded', fetchBestemmingen);
