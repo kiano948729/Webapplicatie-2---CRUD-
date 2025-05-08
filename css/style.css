@@ -115,6 +115,8 @@ h3 {
     max-width: 900px;
     margin: 50px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
 }
 
 .vakanties-main-blok h2 {
@@ -171,7 +173,7 @@ h3 {
 }
 
 .zoek-knop button {
-    background: #32cd32;
+    background: #66A9F0;
     color: white;
     padding: 12px 24px;
     border: none;

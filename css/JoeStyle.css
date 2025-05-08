@@ -10,23 +10,43 @@ body {
 
   .Afbeelding-Berg {
     width: 100%;
-    height: 100%;
-    background-image: url("../img/imageBerg.png");
+    height: 560px;
+    background-image: url("../img/images.jpg");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-  }
-  .VakantieBanner {
-    width: 100%;
-    margin-top: 100px;
-    height: 100px;
-    background-color: #66a9f065;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
+  .Minder-Ruimte-Witte-Text {
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    display: flex;
+    margin-top: 20px;
+    justify-self: center;
+  }
   .Witte-Text {
     color: rgb(255, 255, 255);
     font-weight: 800;
+    display: flex;
+    margin-top: 50px;
+    justify-self: center;
+  }
+
+  .Zwarte-Text {
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    display: flex;
+    justify-self: center;
+    margin-right: 70px;
+  }
+  .VakantieBlokMargin {
+    margin-top: 60px;
+    display: flex;
+  }
+
+  .Titel-Zwarte-Text {
+    width: 80%;
+    display: flex;
+    align-self: flex-end;
+    justify-self: center;
+    margin-top: 60px;
   }

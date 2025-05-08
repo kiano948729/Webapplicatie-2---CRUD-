@@ -16,9 +16,7 @@
                 <label for="check-out">Check out</label>
                 <input type="date" id="check-out" name="check-out">
             </div>
-
         </div>
-
         <div class="filters">
             <input type="radio" id="filter-huis" name="filter" value="house">
             <label for="filter-huis">House</label>
@@ -38,3 +36,4 @@
         </div>
     </form>
 </div>
+
