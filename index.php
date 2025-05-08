@@ -23,8 +23,9 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Menu</title>
+    <title>Vakanties Boeken | Naam</title>
     <link rel="stylesheet" href="css/JoeStyle.css">
+    <link rel="icon" href="../img/CompassLogo.png" type="Images/png">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
