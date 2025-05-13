@@ -41,7 +41,6 @@ if (isset($_SESSION['user_id'])) {
     </header>
     <main>
         <h1 class="Witte-Text">DE BESTE VAKANTIES</h1>
-        <h2 class="Minder-Ruimte-Witte-Text">Ontdek de wereld.</h2>
       <div class="VakantieBlokMargin">
       <?php require_once("components/vakanties-blok.php")?> 
       </div>
