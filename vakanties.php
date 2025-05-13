@@ -4,7 +4,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
 session_start();
-require_once 'backend/databaseConnect.php';
+require 'backend/databaseConnect.php';
+require 'backend/conn.php';
+include 'backend/fetch_bestemmingen.php';
 
 // Controleer of er een ingelogde gebruiker is
 $current_user = null;
@@ -74,10 +76,21 @@ if (isset($_SESSION['user_id'])) {
         </div>
 
         <div class="event-lijst">
-            hier moeten alle accomodaties komen geen deals; met Filters    
+            <?php foreach ($results as $accommodation): ?>
+                <div class="vakantie-kaart">
+                    <img src="<?= htmlspecialchars($accommodation['photo_url']) ?>">
+                    <h3><?= htmlspecialchars($accommodation['name']) ?></h3>
+                    <p><?= htmlspecialchars($accommodation['type']) ?> <?= htmlspecialchars($accommodation['location']) ?>
+                    </p>
+                    <p><?= htmlspecialchars($accommodation['description']) ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
+    </div>
     </main>
     <footer>
 
     </footer>
 </body>
+
+</html>
