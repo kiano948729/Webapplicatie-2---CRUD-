@@ -40,7 +40,8 @@ if (isset($_SESSION['user_id'])) {
         <?php require_once("components/header.php")?> 
     </header>
     <main>
-        <h1 class="Witte-Text">DE BESTE VAKANTIES</h1>
+        <h1 class="Witte-Text">Welkom bij backpack & go.</h1>
+        <h2 class="Witte-Text">De wereld ligt aan je voeten.</h2>
       <div class="VakantieBlokMargin">
       <?php require_once("components/vakanties-blok.php")?> 
       </div>
