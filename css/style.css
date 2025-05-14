@@ -114,6 +114,7 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+
 .vakanties-main-blok {
     background: white;
     border-radius: 12px;
@@ -176,16 +177,15 @@ h3 {
 .zoek-knop {
     margin-top: 20px;
     text-align: right;
+    background-color: none;
 }
 
 .zoek-knop button {
-    background: #66A9F0;
-    color: white;
     padding: 12px 24px;
     border: none;
     border-radius: 24px;
     font-size: 16px;
-    cursor: pointer;
+    background-color: none;
 }
 
 .vakanties-bestemming {
@@ -273,129 +273,160 @@ h3 {
     }
 }
 
-.vakanties-explore-events {
-    max-width: 1200px;
-    margin: auto;
+.explore-container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    height: 100vh;
 }
 
-.header-rij {
+.sidebar-main {
     display: flex;
-    justify-content: space-between;
+    width: 20%;
+    height: 100vh;
+}
+
+.sidebar-nav {
+    width: 30%;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 25px;
+    border-radius: 20px 0 0 20px;
 }
 
-.header-rij h2 {
-    font-size: 28px;
+.vertical-line {
+    width: 0.3%;
+    background-color: #bc1c1c;
+    height: 100%;
 }
 
-.zoekfilter {
+.sidebar {
+    width: 69%;
+    flex-shrink: 0;
+    background: #f9f9f9;
+    border-radius: 12px;
     display: flex;
-    gap: 12px;
+    flex-direction: column;
     align-items: center;
 }
 
-.zoekfilter input[type="text"] {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    width: 200px;
+.sidebar-nav img {
+    width: 100px;
+    height: 100px;
 }
 
-.zoekfilter button {
-    background-color: #32cd32;
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 20px;
-    cursor: pointer;
+.sidebar-nav i {
+    font-size: 40px;
+    margin-top: 30px;
 }
 
-.event-lijst {
+.sidebar a {
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+    margin: 0 0 20px 0;
+}
+
+.sidebar i {
+    margin: 0 20px 0 0;
+}
+
+.sidebar h1 {
+    font-size: 30px;
+    margin: 0 20px 30px 0;
+}
+
+.content {
+    flex: 1;
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-.event-kaart {
-    flex: 1 1 calc(33.333% - 20px);
-    background: white;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s;
+.content-header {
+    margin-bottom: 1rem;
 }
 
-.event-kaart:hover {
-    transform: translateY(-5px);
-}
-
-.event-kaart img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.event-info {
-    padding: 15px;
-}
-
-.event-info h3 {
-    margin: 0 0 10px;
-    font-size: 16px;
-}
-
-.event-meta {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 8px;
-    gap: 8px;
-}
-
-.event-meta span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.event-prijs {
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.event-info button {
-    background: #eee;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 13px;
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
 @media (max-width: 900px) {
-    .event-kaart {
-        flex: 1 1 calc(50% - 20px);
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
-    .event-kaart {
-        flex: 1 1 100%;
-    }
-
-    .zoekfilter input {
-        width: 100px;
+    .event-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-.bestemming-kaart.visible {
-    display: block;  
+
+.vakantie-kaart {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.vakanties-bestemming {
-    overflow: hidden;
+.vakantie-kaart img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.filter-balk {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-knop {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filter-knop:hover {
+    background-color: #dcdcdc;
+}
+
+.filter-rechts select {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+.nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+.nav-btn.active {
+    background-color: #ddd;
+    border-radius: 8px;
 }
