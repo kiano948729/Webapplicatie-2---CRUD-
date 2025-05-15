@@ -8,12 +8,120 @@ body {
     font-optical-sizing: auto;
   }
 
-  .Afbeelding-Berg {
-    width: 100%;
+  .Afbeelding-Achtergrond-Login {
     height: 100vh;
-    background-image: url("../img/images.jpg");
+    width: 100lvw;
     background-size: cover;
-    background-position: center;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url('../img/Achtergrond-Login.png');
+  }
+
+  .loginFrameRij {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+   .onzichtbareFrame {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    display: flex;
+    background-color: #ffffff45;
+    gap: 50px;
+    border-radius: 30px;
+  }
+
+  .loginFrameRedirect {
+    background-color: rgb(255, 255, 255);
+    width: 380px;
+    height: 310px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+  }
+
+  .loginFrame {
+    background-color: rgb(255, 255, 255);
+    width: 430px;
+    height: 440px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+  }
+  .logoRij {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  i {
+    font-size: 35px;
+  }
+  .boldText {
+    font-weight: bold;
+  }
+  .normaalText {
+    font-weight: normal;
+  }
+  .loginInput {
+    width: 73%;
+    margin-left: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border-style: none;
+    background-color: rgba(106, 106, 106, 0.185);
+  }
+
+  .loginKnop {
+    margin-left: 50px;
+    margin-top: 40px;
+    height: 50px;
+    width: 74.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #66A9F0;
+    border-style: none;
+    border-radius: 5px;
+  }
+
+  .textBovenInput {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 50px;
+  }
+
+  .loginTextFrame {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 50px;
+  }
+
+  .loginTextFrameRedirect {
+     width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .TextFrameRedirect {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .LocatieFrame {
@@ -31,12 +139,6 @@ body {
   }
   .Witte-Text {
     color: rgb(255, 255, 255);
-    font-weight: 800;
-    display: flex;
-    margin-top: 50px;
-    justify-self: center;
-    -webkit-text-stroke: 0.7px;
-    -webkit-text-stroke-color: black;
   }
 
   .Zwarte-Text {
