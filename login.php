@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
                 </form>
                 <div class="knopRij">
                     <button class="loginKnop" type="submit">
-                            <h2 class="Witte-Text">LOGIN</h2>
+                            <h2 class="Witte-Text">Login</h2>
                     </button>
                 </div>
             </div>
