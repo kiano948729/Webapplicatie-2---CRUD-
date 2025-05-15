@@ -1,16 +1,47 @@
-let bestemmingen = [];
-let huidigeIndex = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const contentSections = document.querySelectorAll(".content-section");
+    const form = document.getElementById('zoekForm');
+    const resultsDiv = document.getElementById('vakantieResultaten');
 
-// Functie om de bestemmingen op te halen
-function fetchBestemmingen() {
-    fetch('backend/fetch_bestemmingen.php')
-        .then(response => response.json())
-        .then(data => {
-            bestemmingen = data;
-            toonBestemmingen();  // Laat de eerste set bestemmingen zien
-        })
-        .catch(error => console.error('Fout bij het ophalen van bestemmingen:', error));
-}
+
+    navButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const targetId = btn.dataset.target;
+
+            // Verberg alle contentsecties
+            contentSections.forEach((section) => {
+                section.style.display = "none";
+            });
+
+            // Toon de juiste sectie
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.style.display = "block";
+            }
+        });
+    });
+    if (form && resultsDiv) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const query = new URLSearchParams(formData).toString();
+
+            fetch(`backend/search.php?${query}`)
+                .then(response => response.text())
+                .then(html => {
+                    resultsDiv.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Zoeken mislukt:', error);
+                    resultsDiv.innerHTML = '<p>Fout bij het laden van zoekresultaten.</p>';
+                });
+        });
+
+    }
+});
+
 
 // Functie om de bestemmingen te tonen
 function toonBestemmingen() {
@@ -31,25 +62,3 @@ function toonBestemmingen() {
     });
 }
 
-// Functie om naar de volgende set bestemmingen te gaan
-function volgendeSlide() {
-    if (huidigeIndex + 4 < bestemmingen.length) {
-        huidigeIndex += 4;  // Ga verder naar de volgende 4 bestemmingen
-    } else {
-        huidigeIndex = 0;  // Reset naar begin als we aan het einde zijn
-    }
-    toonBestemmingen();
-}
-
-// Functie om naar de vorige set bestemmingen te gaan
-function vorigeSlide() {
-    if (huidigeIndex - 4 >= 0) {
-        huidigeIndex -= 4;  // Ga naar de vorige 4 bestemmingen
-    } else {
-        huidigeIndex = bestemmingen.length - 4;  // Als we in het begin zitten, ga naar het einde
-    }
-    toonBestemmingen();
-}
-
-// Zorg ervoor dat de bestemmingen worden opgehaald zodra de pagina wordt geladen
-document.addEventListener('DOMContentLoaded', fetchBestemmingen);

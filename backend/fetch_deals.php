@@ -3,7 +3,7 @@
 require 'conn.php';
 
 // Query om bestemmingen uit de database op te halen
-$sql = "SELECT * FROM accommodaties";
+$sql = "SELECT * FROM vakantie_deals";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
