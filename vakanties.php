@@ -1,5 +1,5 @@
 <?php
-global $conn;
+global $conn, $results;
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
