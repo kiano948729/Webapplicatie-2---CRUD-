@@ -336,7 +336,6 @@ h3 {
     height: 100px;
 }
 
-<<<<<<< HEAD
 .zoekfilter button {
     background-color: #66A9F0;
     border: none;
@@ -344,11 +343,11 @@ h3 {
     padding: 8px 14px;
     border-radius: 20px;
     cursor: pointer;
-=======
+}
 .sidebar-nav i {
     font-size: 40px;
     margin-top: 30px;
->>>>>>> 5090170e49943a691aeee10b931f07a697273eb2
+
 }
 
 .sidebar a {
