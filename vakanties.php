@@ -7,7 +7,7 @@ session_start();
 require 'backend/databaseConnect.php';
 require 'backend/conn.php';
 include 'backend/fetch_bestemmingen.php';
-// include 'backend/fetch_deals.php';
+include 'backend/fetch_deals.php';
 
 // Controleer of er een ingelogde gebruiker is
 $current_user = null;
@@ -40,123 +40,138 @@ if (isset($_SESSION['user_id'])) {
         rel="stylesheet">
 </head>
 
-<body>
+<body class="vakantie-body">
     <header>
 
     </header>
-    <div class="explore-container">
-        <!-- Sidebar -->
-        <div class="sidebar-main">
-            <aside class="sidebar-nav">
-                <img src="img/CompassLogo.png" alt="logo">
-                <button class="nav-btn" data-target="homeContent"><i class="fa-solid fa-house-chimney"></i></button>
-                <button class="nav-btn" data-target="searchContent"><i
-                        class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="nav-btn" data-target="trendingContent"><i
-                        class="fa-solid fa-arrow-trend-up"></i></button>
-                <button class="nav-btn" data-target="myVacationsContent"><i
-                        class="fa-solid fa-user-shield"></i></button>
+    <div class="explore-background">
+        <div class="explore-container">
+            <!-- Sidebar -->
+            <div class="sidebar-main">
+                <aside class="sidebar-nav">
+                    <img src="img/CompassLogo.png" alt="logo">
+                    <button class="nav-btn" data-target="homeContent"><i class="fa-solid fa-house-chimney"></i></button>
+                    <button class="nav-btn" data-target="searchContent"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="nav-btn" data-target="trendingContent"><i
+                            class="fa-solid fa-arrow-trend-up"></i></button>
+                    <button class="nav-btn" data-target="myVacationsContent"><i
+                            class="fa-solid fa-user-shield"></i></button>
 
-            </aside>
-            <div class="vertical-line"></div>
-            <aside class="sidebar">
-                <h1>navigatie inhoud</h1>
-                <a href="overOns.php"><i class="fa-solid fa-person-hiking"></i>Over ons</a>
-                <a href="contact.php"><i class="fa-solid fa-square-envelope"></i>Contact</a>
-            </aside>
-        </div>
-        <!-- Content -->
-        <main class="content">
-            <div class="content-header">
-                <h2><strong>Explore</strong> events</h2>
+                </aside>
+                <div class="vertical-line"></div>
+                <aside class="sidebar">
+                    <h1>navigatie inhoud</h1>
+                    <div class="side-bar-main-navigatie">
+                        <a href="index.php"><i class="fa-solid fa-compass"></i>Home</a>
+                        <a href="overOns.php"><i class="fa-solid fa-person-hiking"></i>Over ons</a>
+                        <a href="contact.php"><i class="fa-solid fa-square-envelope"></i>Contact</a>
+                    </div>
+                </aside>
             </div>
-            <div class="filter-balk">
-                <div class="filter-links">
-                    <button class="filter-knop">Alle vakanties</button>
-                    <button class="filter-knop">Prijs < €200</button>
-                            <button class="filter-knop">Hotels</button>
-                            <button class="filter-knop">Campings</button>
+            <!-- Content -->
+            <main class="content">
+                <div class="content-header-navigatie">
+                    <div class="content-header">
+                        <h2><strong>Explore</strong> events</h2>
+                    </div>
+                    <div class="filter-balk">
+                        <div class="filter-links">
+                            <button class="filter-knop">Alle vakanties</button>
+                            <button class="filter-knop">Prijs < €200</button>
+                                    <button class="filter-knop">Hotels</button>
+                                    <button class="filter-knop">Campings</button>
+                        </div>
+                        <div class="filter-rechts">
+                            <select>
+                                <option>Sorteer op datum</option>
+                                <option>Sorteer op prijs (laag-hoog)</option>
+                                <option>Sorteer op prijs (hoog-laag)</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="filter-rechts">
-                    <select>
-                        <option>Sorteer op datum</option>
-                        <option>Sorteer op prijs (laag-hoog)</option>
-                        <option>Sorteer op prijs (hoog-laag)</option>
-                    </select>
+                <!-- Home - standaard zichtbaar -->
+                <div id="homeContent" class="content-section">
+                    <div class="event-grid">
+                        <?php foreach ($results as $accommodation): ?>
+                            <div class="vakantie-kaart">
+                                <img src="<?= htmlspecialchars($accommodation['photo_url']) ?>"
+                                    alt="Foto van <?= htmlspecialchars($accommodation['name']) ?>">
+                                <h3><?= htmlspecialchars($accommodation['name']) ?></h3>
+                                <p><span><?= htmlspecialchars($accommodation['type']) ?></span>
+                                    <span><?= htmlspecialchars($accommodation['location']) ?></span>
+                                </p>
+                                <p><?= htmlspecialchars($accommodation['description']) ?></p>
+                                <p><strong>€ <?= htmlspecialchars($accommodation['price']) ?></strong></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Home - standaard zichtbaar -->
-            <div id="homeContent" class="content-section">
-                <div class="event-grid">
-                    <?php foreach ($results as $accommodation): ?>
+                <!-- Zoeken -->
+                <div id="searchContent" class="content-section" style="display: none;">
+                    <p>Zoekformulier en resultaten hier</p>
+                    <form id="zoekForm" method="get">
+                        <div class="input-rij">
+                            <div class="invoer-blok">
+                                <label for="locatie">Location</label>
+                                <input type="text" id="locatie" name="locatie" placeholder="Type the destination">
+                            </div>
+
+                            <div class="invoer-blok">
+                                <label for="check-in">Check in</label>
+                                <input type="date" id="check-in" name="check-in">
+                            </div>
+
+                            <div class="invoer-blok">
+                                <label for="check-out">Check out</label>
+                                <input type="date" id="check-out" name="check-out">
+                            </div>
+                        </div>
+                        <div class="filters">
+                            <input type="radio" id="filter-huis" name="filter" value="house">
+                            <label for="filter-huis">House</label>
+
+                            <input type="radio" id="filter-hotel" name="filter" value="hotel">
+                            <label for="filter-hotel">Hotel</label>
+
+                            <input type="radio" id="filter-residentieel" name="filter" value="residential">
+                            <label for="filter-residentieel">Residential</label>
+
+                            <input type="radio" id="filter-appartement  " name="filter" value="apartment">
+                            <label for="filter-appartement">Apartment</label>
+                        </div>
+
+                        <div class="zoek-knop">
+                            <button type="submit">Search Properties</button>
+                        </div>
+                    </form>
+                    <div id="vakantieResultaten"></div>
+
+                </div>
+
+                <!-- Trending -->
+                <div id="trendingContent" class="content-section" style="display: none;">
+                    <p>Populaire deals hier</p>
+                    <?php foreach ($deals as $deal): ?>
                         <div class="vakantie-kaart">
-                            <img src="<?= htmlspecialchars($accommodation['photo_url']) ?>"
-                                alt="Foto van <?= htmlspecialchars($accommodation['name']) ?>">
-                            <h3><?= htmlspecialchars($accommodation['name']) ?></h3>
-                            <p><span><?= htmlspecialchars($accommodation['type']) ?></span>
-                                <span><?= htmlspecialchars($accommodation['location']) ?></span>
-                            </p>
-                            <p><?= htmlspecialchars($accommodation['description']) ?></p>
-                            <p><strong>€ <?= htmlspecialchars($accommodation['price']) ?></strong></p>
+                            <img src="<?= htmlspecialchars($deal['photo_url']) ?>"
+                                alt="Foto van <?= htmlspecialchars($deal['destination']) ?>">
+                            <h3><?= htmlspecialchars($deal['destination']) ?></h3>
+                            <p><?= htmlspecialchars($deal['description']) ?></p>
+                            <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
-            </div>
 
-            <!-- Zoeken -->
-            <div id="searchContent" class="content-section" style="display: none;">
-                <p>Zoekformulier en resultaten hier</p>
-                <form id="zoekForm" method="get">
-                    <div class="input-rij">
-                        <div class="invoer-blok">
-                            <label for="locatie">Location</label>
-                            <input type="text" id="locatie" name="locatie" placeholder="Type the destination">
-                        </div>
+                <!-- Mijn vakanties -->
+                <div id="myVacationsContent" class="content-section" style="display: none;">
+                    <p>Mijn opgeslagen vakanties hier</p>
+                </div>
 
-                        <div class="invoer-blok">
-                            <label for="check-in">Check in</label>
-                            <input type="date" id="check-in" name="check-in">
-                        </div>
-
-                        <div class="invoer-blok">
-                            <label for="check-out">Check out</label>
-                            <input type="date" id="check-out" name="check-out">
-                        </div>
-                    </div>
-                    <div class="filters">
-                        <input type="radio" id="filter-huis" name="filter" value="house">
-                        <label for="filter-huis">House</label>
-
-                        <input type="radio" id="filter-hotel" name="filter" value="hotel">
-                        <label for="filter-hotel">Hotel</label>
-
-                        <input type="radio" id="filter-residentieel" name="filter" value="residential">
-                        <label for="filter-residentieel">Residential</label>
-
-                        <input type="radio" id="filter-appartement  " name="filter" value="apartment">
-                        <label for="filter-appartement">Apartment</label>
-                    </div>
-
-                    <div class="zoek-knop">
-                        <button type="submit">Search Properties</button>
-                    </div>
-                </form>
-                <div id="vakantieResultaten"></div>
-
-            </div>
-
-            <!-- Trending -->
-            <div id="trendingContent" class="content-section" style="display: none;">
-                <p>Populaire deals hier</p>
-            </div>
-
-            <!-- Mijn vakanties -->
-            <div id="myVacationsContent" class="content-section" style="display: none;">
-                <p>Mijn opgeslagen vakanties hier</p>
-            </div>
-
-        </main>
+            </main>
+        </div>
     </div>
     <footer>
 

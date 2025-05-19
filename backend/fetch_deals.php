@@ -7,7 +7,7 @@ $sql = "SELECT * FROM vakantie_deals";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$deals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // echo json_encode($results);
 ?>
