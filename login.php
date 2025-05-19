@@ -16,6 +16,31 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
+<?php
+try {
+    $connection = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (PDOException $e) {
+    die("Databaseverbinding mislukt: " . $e->getMessage());
+}
+if(isset($_POST["Registreren-Knop"])){
+    $sql = "SELECT * FROM `users` WHERE password = :password AND username = :username";
+    $statement = $connection->prepare($sql);
+    $statement->bindParam(":username", $_POST['username']);
+    $statement->bindParam(":password", $_POST['password']);
+    $statement->execute();
+    $gebruiker = $statement->fetch();
+    if($gebruiker) {
+        header("Location: registreren.php");
+        exit;
+    } else {
+        header("Location: login.php");
+        exit;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -37,50 +62,52 @@ if (isset($_SESSION['user_id'])) {
 <div class="Afbeelding-Achtergrond-Login">
 
     <header>
-        <?php require_once("components/header.php")?> 
+        <?php require_once("components/header.php")?>
     </header>
     <main>
         <div class="loginFrameRij">
             <div class="onzichtbareFrame">
                 <div class="loginFrame">
-                <div class="loginTextFrame">
-                    <h1>Login</h1>
-                </div>
-                <div class="textBovenInput">
-                    <h2 class="normaalText">Naam</h2>
-                </div>
-                <form action="Login.php" method="post">
-                    <input class="loginInput" type="text">
-                </form>
-                 <div class="textBovenInput">
-                    <h2 class="normaalText">Wachtwoord</h2>
-                </div>
-                <form action="Login.php" method="post">
-                    <input class="loginInput" type="text">
-                </form>
-                <div class="knopRij">
-                    <button class="loginKnop" type="submit">
+                    <div class="loginTextFrame">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="textBovenInput">
+                        <h2 class="normaalText">Naam</h2>
+                    </div>
+                    <form action="Login.php" method="post">
+                        <input class="loginInput" name="username" placeholder="Naam">
+                    </form>
+                    <div class="textBovenInput">
+                        <h2 class="normaalText">Wachtwoord</h2>
+                    </div>
+                    <form action="Login.php" method="post">
+                        <input class="loginInput" type="password" name="password" placeholder="Wachtwoord">
+                    </form>
+                    <div class="knopRij">
+                        <button class="loginKnop" type="submit" name="Login-Knop">
                             <h2 class="Witte-Text">Login</h2>
-                    </button>
+                        </button>
+                    </div>
                 </div>
-            </div>
-             <div class="loginFrameRedirect">
-                <div class="loginTextFrameRedirect">
-                    <h1 class="boldText">Nieuw hier?</h1>
+                <div class="loginFrameRedirect">
+                    <div class="loginTextFrameRedirect">
+                        <h1 class="boldText">Nieuw hier?</h1>
+                    </div>
+                    <div class="TextFrameRedirect">
+                        <h2 class="normaalText">U kan hier onder registreren.</h2>
+                    </div>
+                    <div class="logoRij">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                    <div class="knopRij">
+                        <a href="registreren.php">
+                        <button class="loginKnop" name="Registreren-Knop" type="submit">
+                                <h2 class="Witte-Text">registreren</h2>
+                        </button>
+                        </a>
+                    </div>
                 </div>
-                <div class="TextFrameRedirect">
-                    <h2 class="normaalText">U kan hier onder registreren.</h2>
-                </div>
-                <div class="logoRij">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
-                
-                <div class="knopRij">
-                    <button class="loginKnop" type="submit">
-                        <h2 class="Witte-Text">registreren</h2>
-                    </button>
-                </div>
-            </div>
             </div>
         </div>
     </main>
