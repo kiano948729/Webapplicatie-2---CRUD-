@@ -26,17 +26,28 @@ body {
     align-items: center;
   }
 
+
    .onzichtbareFrame {
     width: 65%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 550px;
-    display: flex;
     background-color: #ffffff45;
     gap: 50px;
     border-radius: 30px;
   }
+
+   .onzichtbareFrameRegistreren {
+     width: 65%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 600px;
+     background-color: #ffffff45;
+     gap: 50px;
+     border-radius: 30px;
+   }
 
   .loginFrameRedirect {
     background-color: rgb(255, 255, 255);
@@ -53,6 +64,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
   }
+.registrerenFrame {
+  background-color: rgb(255, 255, 255);
+  width: 430px;
+  height: 540px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+}
   .logoRij {
     width: 100%;
     height: 20px;
@@ -95,8 +113,9 @@ body {
     width: 100%;
     height: 60px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-left: 50px;
+    flex-direction: column;
   }
 
   .loginTextFrame {

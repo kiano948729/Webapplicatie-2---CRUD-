@@ -20,7 +20,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="../backend/logout.php">Uitloggen</a>
             <?php else: ?>
                 <a href="../backend/login.php">Inloggen</a>
-                <a href="../backend/register.php">Registreren</a>
+                <a href="../backend/registreren.php">Registreren</a>
                 <a href="../backend/guest.php">Gast</a>
             <?php endif; ?>
         </div>
