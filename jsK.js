@@ -61,4 +61,20 @@ function toonBestemmingen() {
         container.appendChild(kaart);
     });
 }
+const typeBtn = document.getElementById('typeFilterBtn');
+const dashboard = document.getElementById('typeDashboard');
+const applyBtn = document.getElementById('applyFilters');
+
+typeBtn.addEventListener('click', () => {
+    dashboard.style.display = dashboard.style.display === 'block' ? 'none' : 'block';
+});
+
+applyBtn.addEventListener('click', () => {
+    const checkedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+
+    // Doe hier iets met de geselecteerde types
+    console.log("Geselecteerde types:", checkedTypes);
+
+    dashboard.style.display = 'none'; // Sluit dashboard na toepassen
+});
 
