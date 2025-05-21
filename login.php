@@ -66,49 +66,19 @@ if(isset($_POST["Registreren-Knop"])){
     </header>
     <main>
         <div class="loginFrameRij">
-            <div class="onzichtbareFrame">
-                <div class="loginFrame">
-                    <div class="loginTextFrame">
-                        <h1>Login</h1>
-                    </div>
-                    <div class="textBovenInput">
-                        <h2 class="normaalText">Naam</h2>
-                    </div>
-                    <form action="Login.php" method="post">
-                        <input class="loginInput" name="username" placeholder="Naam">
-                    </form>
-                    <div class="textBovenInput">
-                        <h2 class="normaalText">Wachtwoord</h2>
-                    </div>
-                    <form action="Login.php" method="post">
-                        <input class="loginInput" type="password" name="password" placeholder="Wachtwoord">
-                    </form>
-                    <div class="knopRij">
-                        <button class="loginKnop" type="submit" name="Login-Knop">
-                            <h2 class="Witte-Text">Login</h2>
-                        </button>
-                    </div>
-                </div>
-                <div class="loginFrameRedirect">
-                    <div class="loginTextFrameRedirect">
-                        <h1 class="boldText">Nieuw hier?</h1>
-                    </div>
-                    <div class="TextFrameRedirect">
-                        <h2 class="normaalText">U kan hier onder registreren.</h2>
-                    </div>
-                    <div class="logoRij">
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </div>
+           <div class="loginFrame">
+               <div class="handLogoFrame">
+                   <i class="fa-solid fa-hand"></i>
+               </div>
+               <div class="textFrameLogin">
+                   <h1 class="grijsText">Welkom terug</h1>
+               </div>
+               <form action="login.php" method="post">
 
-                    <div class="knopRij">
-                        <a href="registreren.php">
-                        <button class="loginKnop" name="Registreren-Knop" type="submit">
-                                <h2 class="Witte-Text">registreren</h2>
-                        </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                   <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
+                   <input class="loginInputWachtwoord" name="username" placeholder="Wachtwoord" type="password">
+               </form>
+           </div>
         </div>
     </main>
     <footer>
