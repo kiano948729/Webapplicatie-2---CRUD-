@@ -44,6 +44,105 @@ html {
 }
 
 /* ============================= */
+/*  Fancy Header voor Reisbureau */
+/* ============================= */
+nav {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    backdrop-filter: blur(10px);
+    padding: var(--gap-md) var(--gap-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.index-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: var(--gap-md);
+    flex-wrap: wrap;
+}
+
+/* Logo */
+.index-Frame-Logo a {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+.index-Frame-Logo a:hover {
+    transform: scale(1.05);
+}
+
+/* Navigatie */
+.index-main-nav {
+    display: flex;
+    gap: var(--gap-md);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.index-main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 30px;
+    transition: background-color var(--transition), transform var(--transition);
+}
+
+.index-main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Separator bullet */
+.index-main-nav a:nth-child(2n) {
+    padding: 0;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+/* Login/Logout */
+.index-Frame-Login {
+    display: flex;
+    gap: var(--gap-sm);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.index-Frame-Login span {
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.index-Frame-Login a {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    transition: background-color var(--transition), transform var(--transition);
+}
+
+.index-Frame-Login a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* ============================= */
 /*  Container & layout           */
 /* ============================= */
 .explore-background {
