@@ -2,25 +2,25 @@
 /*  Vakantiepagina – Root vars   */
 /* ============================= */
 :root {
-  /* Kleuren */
-  --bg-light: #f8f9fa;
-  --bg-medium: #e9ecef;
-  --bg-dark: #dee2e6;
-  --primary: #66a9f0;
-  --primary-hover: #5a95d9;
-  --text-dark: #212529;
-  --text-light: #495057;
-  --card-shadow: rgba(0, 0, 0, 0.05);
-  --scrollbar-track: #e9ecef;
-  --scrollbar-thumb: #adb5bd;
-  --scrollbar-thumb-hover: #868e96;
+    /* Kleuren */
+    --bg-light: #f8f9fa;
+    --bg-medium: #e9ecef;
+    --bg-dark: #dee2e6;
+    --primary: #66a9f0;
+    --primary-hover: #5a95d9;
+    --text-dark: #212529;
+    --text-light: #495057;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --scrollbar-track: #e9ecef;
+    --scrollbar-thumb: #adb5bd;
+    --scrollbar-thumb-hover: #868e96;
 
-  /* Spacing */
-  --gap-sm: 8px;
-  --gap-md: 16px;
-  --gap-lg: 24px;
-  --radius: 12px;
-  --transition: 0.3s ease;
+    /* Spacing */
+    --gap-sm: 8px;
+    --gap-md: 16px;
+    --gap-lg: 24px;
+    --radius: 12px;
+    --transition: 0.3s ease;
 }
 
 /* ============================= */
@@ -29,339 +29,430 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body,
 html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Playfair Display', serif;
-  color: var(--text-dark);
-  background-color: var(--bg-medium);
-  height: 100%;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    color: var(--text-dark);
+    background-color: var(--bg-medium);
+    height: 100%;
+    overflow: hidden;
 }
 
 /* ============================= */
 /*  Container & layout           */
 /* ============================= */
 .explore-background {
-  background-color: var(--bg-medium);
-  padding: var(--gap-lg);
+    background-color: var(--bg-medium);
+    padding: var(--gap-lg);
 }
 
 .explore-container {
-  display: flex;
-  height: calc(100vh - 2 * var(--gap-lg));
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: 0 4px 12px var(--card-shadow);
-  overflow: hidden;
+    display: flex;
+    height: calc(100vh - 2 * var(--gap-lg));
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    overflow: hidden;
 }
 
 /* ============================= */
 /*  Sidebar                      */
 /* ============================= */
 .sidebar-main {
-  display: flex;
-  width: 20%;
-  min-width: 200px;
+    display: flex;
+    width: 20%;
+    min-width: 200px;
 }
 
 .sidebar-nav {
-  width: 30%;
-  background-color: var(--bg-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: var(--gap-lg);
-  border-right: 1px solid var(--bg-dark);
+    width: 30%;
+    background-color: var(--bg-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: var(--gap-lg);
+    border-right: 1px solid var(--bg-dark);
 }
 
 .sidebar-nav img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: var(--gap-lg);
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--gap-lg);
 }
 
 .nav-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  padding: var(--gap-md);
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all var(--transition), color var(--transition);
-  border-radius: var(--radius);
-  margin-bottom: var(--gap-md);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    padding: var(--gap-md);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all var(--transition), color var(--transition);
+    border-radius: var(--radius);
+    margin-bottom: var(--gap-md);
 }
 
 .nav-btn:hover,
 .nav-btn.active {
-  background-color: var(--bg-dark);
-  color: var(--primary);
+    background-color: var(--bg-dark);
+    color: var(--primary);
 }
 
 .sidebar {
-  width: 70%;
-  background-color: var(--bg-light);
-  padding: var(--gap-lg);
-  box-shadow: inset 0 0 20px var(--card-shadow);
+    width: 70%;
+    background-color: var(--bg-light);
+    padding: var(--gap-lg);
+    box-shadow: inset 0 0 20px var(--card-shadow);
 }
 
 .sidebar h1 {
-  font-size: 1.75rem;
-  margin-bottom: var(--gap-md);
-  color: var(--text-dark);
+    font-size: 1.75rem;
+    margin-bottom: var(--gap-md);
+    color: var(--text-dark);
 }
 
 .side-bar-main-navigatie a {
-  display: flex;
-  align-items: center;
-  font-size: 1.1rem;
-  color: var(--text-dark);
-  text-decoration: none;
-  margin-bottom: var(--gap-md);
-  transition: color var(--transition);
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-bottom: var(--gap-md);
+    transition: color var(--transition);
 }
 
 .side-bar-main-navigatie a:hover {
-  color: var(--primary);
+    color: var(--primary);
 }
 
 .side-bar-main-navigatie a i {
-  margin-right: var(--gap-sm);
+    margin-right: var(--gap-sm);
 }
 
 /* ============================= */
 /*  Hoofdcontent                 */
 /* ============================= */
 .content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
 }
 
 /* Header + filters */
 .content-header-navigatie {
-  padding: var(--gap-md);
-  border-bottom: 1px solid var(--bg-dark);
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-md);
+    padding: var(--gap-md);
+    border-bottom: 1px solid var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
 }
 
 .content-header h2 {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
 }
 
 .filter-balk {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--gap-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-md);
 }
 
-.filter-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap-sm);
+.filter-dash {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    min-width: 200px;
+    animation: fadeIn 0.3s ease;
 }
+
+.filter-dash label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+#applyFilters {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .filter-knop {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-  border: none;
-  border-radius: var(--radius);
-  padding: var(--gap-sm) var(--gap-md);
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all var(--transition), color var(--transition);
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(102, 169, 240, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.filter-knop:hover,
-.filter-knop.active {
-  background-color: var(--primary);
-  color: #fff;
+.filter-knop::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease;
+    z-index: 0;
 }
+
+.filter-knop:hover::after {
+    left: 130%;
+}
+
+.filter-knop:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(102, 169, 240, 0.4);
+}
+
+.filter-knop.active {
+    background: linear-gradient(135deg, var(--primary-hover), #407ec9);
+    box-shadow: 0 6px 15px rgba(90, 149, 217, 0.4);
+    transform: scale(1.05);
+}
+
 
 .filter-rechts select {
-  padding: var(--gap-sm) var(--gap-md);
-  border-radius: var(--radius);
-  border: 1px solid var(--bg-dark);
-  font-size: 0.875rem;
+    padding: var(--gap-sm) var(--gap-md);
+    border-radius: var(--radius);
+    border: 1px solid var(--bg-dark);
+    font-size: 0.875rem;
 }
 
 /* ============================= */
 /*  Vakantie kaarten grid        */
 /* ============================= */
 .event-grid {
-  flex: 1;
-  padding: var(--gap-lg);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--gap-lg);
-  overflow-y: auto;
+    flex: 1;
+    padding: var(--gap-lg);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--gap-lg);
+    overflow-y: auto;
+    max-height: 800px;
 }
 
 /* Custom scrollbar */
 .event-grid::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 .event-grid::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-  border-radius: var(--radius);
+    background: var(--scrollbar-track);
+    border-radius: var(--radius);
 }
 
 .event-grid::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border-radius: var(--radius);
+    background-color: var(--scrollbar-thumb);
+    border-radius: var(--radius);
 }
 
 .event-grid::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover);
+    background-color: var(--scrollbar-thumb-hover);
 }
 
 /* Kaart-styling */
+.deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 1rem;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Scrollbar styling (optioneel, voor moderne browsers) */
+.deals-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.deals-grid::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+}
+
 .vakantie-kaart {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px var(--card-shadow);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition);
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .vakantie-kaart:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px var(--card-shadow);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px var(--card-shadow);
 }
 
 .vakantie-kaart img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
 }
 
 .vakantie-kaart h3 {
-  font-size: 1.125rem;
-  margin: var(--gap-md);
-  color: var(--text-dark);
+    font-size: 1.125rem;
+    margin: var(--gap-md);
+    color: var(--text-dark);
 }
 
 .vakantie-kaart p {
-  margin: 0 var(--gap-md) var(--gap-sm);
-  font-size: 0.875rem;
-  color: var(--text-light);
+    margin: 0 var(--gap-md) var(--gap-sm);
+    font-size: 0.875rem;
+    color: var(--text-light);
 }
 
 .vakantie-kaart p span {
-  display: inline-block;
-  margin-right: var(--gap-sm);
-  font-weight: 600;
+    display: inline-block;
+    margin-right: var(--gap-sm);
+    font-weight: 600;
 }
 
 .vakantie-kaart p strong {
-  display: block;
-  margin: 0 var(--gap-md) var(--gap-md);
-  font-size: 1rem;
-  color: var(--primary);
+    display: block;
+    margin: 0 var(--gap-md) var(--gap-md);
+    font-size: 1rem;
+    color: var(--primary);
 }
 
 /* ============================= */
 /*  Responsiveness               */
 /* ============================= */
 @media (max-width: 1024px) {
-  .explore-container {
-    flex-direction: column;
-  }
-  .sidebar-main {
-    width: 100%;
-    flex-direction: row;
-    height: auto;
-  }
-  .sidebar-nav {
-    width: 20%;
-  }
-  .sidebar {
-    width: 80%;
-  }
+    .explore-container {
+        flex-direction: column;
+    }
+
+    .sidebar-main {
+        width: 100%;
+        flex-direction: row;
+        height: auto;
+    }
+
+    .sidebar-nav {
+        width: 20%;
+    }
+
+    .sidebar {
+        width: 80%;
+    }
 }
+
 @media (max-width: 768px) {
-  .filter-balk {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .filter-balk {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
+
 /* Algemene layout en knoppen */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .btn {
-  background-color: #1abc9c;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: #1abc9c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn:hover {
-  background-color: #16a085;
+    background-color: #16a085;
 }
 
 /* Formulieren */
 input[type="text"],
 input[type="email"],
 textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 /* Tabellen */
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .table th,
 .table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
 }
 
 .table th {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 /* Footer */
 .footer {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }

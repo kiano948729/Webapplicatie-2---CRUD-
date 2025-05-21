@@ -76,12 +76,19 @@ if (isset($_SESSION['user_id'])) {
                         <h2><strong>Explore</strong> events</h2>
                     </div>
                     <div class="filter-balk">
-                        <div class="filter-links">
-                            <button class="filter-knop">Alle vakanties</button>
-                            <button class="filter-knop">Prijs < €200</button>
-                                    <button class="filter-knop">Hotels</button>
-                                    <button class="filter-knop">Campings</button>
+                        <div class="filter-container">
+                            <button class="filter-knop" id="typeFilterBtn">Type</button>
+
+                            <div class="filter-dash" id="typeDashboard">
+                                <h4>Selecteer Type</h4>
+                                <label><input type="checkbox" name="type" value="hostel"> Hostel</label>
+                                <label><input type="checkbox" name="type" value="hotel"> Hotel</label>
+                                <label><input type="checkbox" name="type" value="bb"> B&B</label>
+                                <label><input type="checkbox" name="type" value="camping"> Camping</label>
+                                <button id="applyFilters">Toepassen</button>
+                            </div>
                         </div>
+
                         <div class="filter-rechts">
                             <select>
                                 <option>Sorteer op datum</option>
@@ -153,18 +160,18 @@ if (isset($_SESSION['user_id'])) {
 
                 <!-- Trending -->
                 <div id="trendingContent" class="content-section" style="display: none;">
-                    <p>Populaire deals hier</p>
-                    <?php foreach ($deals as $deal): ?>
-                        <div class="vakantie-kaart">
-                            <img src="<?= htmlspecialchars($deal['photo_url']) ?>"
-                                alt="Foto van <?= htmlspecialchars($deal['destination']) ?>">
-                            <h3><?= htmlspecialchars($deal['destination']) ?></h3>
-                            <p><?= htmlspecialchars($deal['description']) ?></p>
-                            <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
-                        </div>
-                    <?php endforeach; ?>
+                    <div class="deals-grid">
+                        <?php foreach ($deals as $deal): ?>
+                            <div class="vakantie-kaart">
+                                <img src="<?= htmlspecialchars($deal['photo_url']) ?>"
+                                    alt="Foto van <?= htmlspecialchars($deal['destination']) ?>">
+                                <h3><?= htmlspecialchars($deal['destination']) ?></h3>
+                                <p><?= htmlspecialchars($deal['description']) ?></p>
+                                <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-
                 <!-- Mijn vakanties -->
                 <div id="myVacationsContent" class="content-section" style="display: none;">
                     <p>Mijn opgeslagen vakanties hier</p>
