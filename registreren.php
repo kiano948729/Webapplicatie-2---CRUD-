@@ -1,9 +1,6 @@
 <?php
 global $conn;
 $current_page = basename($_SERVER['PHP_SELF']);
-?>
-<?php
-session_start();
 require_once 'backend/databaseConnect.php';
 
 // Controleer of er een ingelogde gebruiker is
@@ -14,8 +11,6 @@ if (isset($_SESSION['user_id'])) {
     $statement->execute([':id' => $_SESSION['user_id']]);
     $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
 }
-?>
-<?php
 try {
     $connection = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -66,9 +61,9 @@ if (isset($_POST["Registreren-Knop"])) {
         <div class="loginFrameRij">
             <div class="onzichtbareFrameRegistreren">
                 <div class="registrerenFrame">
-                <div class="loginTextFrame">
-                    <h1>Registreren</h1>
-                </div>
+                    <div class="loginTextFrame">
+                        <h1>Registreren</h1>
+                    </div>
                     <form action="registreren.php" method="post">
                         <div class="textBovenInput">
                             <h2 class="normaalText">Naam</h2>
@@ -92,23 +87,23 @@ if (isset($_POST["Registreren-Knop"])) {
                         </div>
                     </form>
                 </div>
-             <div class="loginFrameRedirect">
-                <div class="loginTextFrameRedirect">
-                    <h1 class="boldText">al een account?</h1>
-                </div>
-                <div class="TextFrameRedirect">
-                    <h2 class="normaalText">U kan hier onder inloggen</h2>
-                </div>
-                <div class="logoRij">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
+                <div class="loginFrameRedirect">
+                    <div class="loginTextFrameRedirect">
+                        <h1 class="boldText">al een account?</h1>
+                    </div>
+                    <div class="TextFrameRedirect">
+                        <h2 class="normaalText">U kan hier onder inloggen</h2>
+                    </div>
+                    <div class="logoRij">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
 
-                <div class="knopRij">
-                    <button class="loginKnop" name="Login-Knop" type="submit">
-                        <h2 class="Witte-Text">Inloggen</h2>
-                    </button>
+                    <div class="knopRij">
+                        <button class="loginKnop" name="Login-Knop" type="submit">
+                            <h2 class="Witte-Text">Inloggen</h2>
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </main>
