@@ -1,7 +1,17 @@
 <?php
-global $current_user;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $current_page = basename($_SERVER['PHP_SELF']);
+
+$current_user = null;
+
+// Get username from session
+if (isset($_SESSION['username'])) {
+    $current_user = $_SESSION['username'];
+}
 ?>
+
 <nav>
     <div class="index-nav">
         <div class="index-Frame-Logo">
@@ -11,7 +21,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <a href="../vakanties.php">Vakanties</a>
             <a>●</a>
             <a href="../overOns.php">Over ons</a>
-             <a>●</a>
+            <a>●</a>
             <a href="../contact.php">Contact</a>
         </div>
         <div class="index-Frame-Login">
@@ -19,8 +29,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <span>Welkom, <?php echo htmlspecialchars($current_user); ?></span>
                 <a href="../backend/logout.php">Uitloggen</a>
             <?php else: ?>
-                <a href="../backend/login.php">Inloggen</a>
-                <a href="../backend/registreren.php">Registreren</a>
+                <a href="../login.php">Inloggen</a>
+                <a href="../registreren.php">Registreren</a>
                 <a href="../backend/guest.php">Gast</a>
             <?php endif; ?>
         </div>
