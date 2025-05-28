@@ -4,20 +4,34 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
 session_start();
+
 require 'backend/databaseConnect.php';
 require 'backend/conn.php';
 include 'backend/fetch_bestemmingen.php';
 include 'backend/fetch_deals.php';
-
-// Controleer of er een ingelogde gebruiker is
+//hardcoded admin voor test gebruik
 $current_user = null;
+$is_admin = false;
+
 if (isset($_SESSION['user_id'])) {
-    $query = "SELECT username FROM users WHERE id = :id";
+    // Haal gebruikersnaam op
+    $query = "SELECT username FROM users WHERE user_id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([':id' => $_SESSION['user_id']]);
-    $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
-}
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
 
+    if ($result) {
+        $current_user = $result['username'];
+
+        // Controleer of deze gebruiker admin is
+        $adminCheck = $conn->prepare("SELECT 1 FROM admins WHERE username = :username LIMIT 1");
+        $adminCheck->execute([':username' => $current_user]);
+
+        if ($adminCheck->fetch()) {
+            $_SESSION['is_admin'] = true;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +88,12 @@ if (isset($_SESSION['user_id'])) {
                 <div class="content-header-navigatie">
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
+                            <button type="button"
+                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
+                        <?php if (!empty($_SESSION['is_admin'])): ?>
+                        <?php endif; ?>
+
+
                     </div>
                     <div class="filter-balk">
                         <div class="filter-container">
@@ -118,45 +138,47 @@ if (isset($_SESSION['user_id'])) {
 
                 <!-- Zoeken -->
                 <div id="searchContent" class="content-section" style="display: none;">
-                    <p>Zoekformulier en resultaten hier</p>
+                    <p><i class="fas fa-search-location"></i> Zoek jouw perfecte verblijf</p>
                     <form id="zoekForm" method="get">
                         <div class="input-rij">
                             <div class="invoer-blok">
-                                <label for="locatie">Location</label>
+                                <label for="locatie"><i class="fas fa-map-marker-alt"></i> Locatie</label>
                                 <input type="text" id="locatie" name="locatie" placeholder="Type the destination">
                             </div>
 
                             <div class="invoer-blok">
-                                <label for="check-in">Check in</label>
+                                <label for="check-in"><i class="fas fa-calendar-check"></i> Check-in</label>
                                 <input type="date" id="check-in" name="check-in">
                             </div>
 
                             <div class="invoer-blok">
-                                <label for="check-out">Check out</label>
+                                <label for="check-out"><i class="fas fa-calendar-times"></i> Check-out</label>
                                 <input type="date" id="check-out" name="check-out">
                             </div>
                         </div>
+
                         <div class="filters">
                             <input type="radio" id="filter-huis" name="filter" value="house">
-                            <label for="filter-huis">House</label>
+                            <label for="filter-huis"><i class="fas fa-home"></i> House</label>
 
                             <input type="radio" id="filter-hotel" name="filter" value="hotel">
-                            <label for="filter-hotel">Hotel</label>
+                            <label for="filter-hotel"><i class="fas fa-hotel"></i> Hotel</label>
 
                             <input type="radio" id="filter-residentieel" name="filter" value="residential">
-                            <label for="filter-residentieel">Residential</label>
+                            <label for="filter-residentieel"><i class="fas fa-city"></i> Residential</label>
 
-                            <input type="radio" id="filter-appartement  " name="filter" value="apartment">
-                            <label for="filter-appartement">Apartment</label>
+                            <input type="radio" id="filter-appartement" name="filter" value="apartment">
+                            <label for="filter-appartement"><i class="fas fa-building"></i> Apartment</label>
                         </div>
 
                         <div class="zoek-knop">
-                            <button type="submit">Search Properties</button>
+                            <button type="submit"><i class="fas fa-search"></i> Zoek Verblijven</button>
                         </div>
                     </form>
-                    <div id="vakantieResultaten"></div>
 
+                    <div id="vakantieResultaten"></div>
                 </div>
+
 
                 <!-- Trending -->
                 <div id="trendingContent" class="content-section" style="display: none;">
