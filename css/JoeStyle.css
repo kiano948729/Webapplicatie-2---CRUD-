@@ -40,6 +40,13 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
   }
+  .registrerenFrame {
+    background-color: rgb(255, 255, 255);
+    width: 430px;
+    height: 510px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+  }
   .handLogoFrame {
     display: flex;
     background-color: rgba(156, 156, 156, 0);
@@ -54,11 +61,21 @@ body {
     justify-content: center;
     align-items: center;
   }
-
   #HandLogo {
     color: #66A9F0;
-    transform:rotate(30deg);
     font-size: 45px;
+    animation: rotateBox 2s ease-in-out infinite;
+    transform-origin: center;
+
+  }
+  @keyframes rotateBox {
+    0%   { transform: rotate(20deg); }
+    50%  { transform: rotate(40deg); }
+    100% { transform: rotate(20deg); }
+  }
+  #regristreerLogo {
+    color: #66A9F0;
+    font-size: 40px;
   }
 
    .onzichtbareFrame {
@@ -90,13 +107,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
   }
-.registrerenFrame {
-  background-color: rgb(255, 255, 255);
-  width: 430px;
-  height: 540px;
-  border-radius: 10px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
-}
   .logoRij {
     width: 100%;
     height: 20px;
@@ -124,7 +134,12 @@ body {
     font-family: "Rubik", sans-serif !important;
     font-weight: 500 !important;
     font-size: 18px !important;
-    transition: 0.5s !important;
+    transition: 0.2s !important;
+  }
+  input:focus {
+    border-color: #66A9F0 !important;
+    outline: 0;
+    color: #66A9F0;
   }
   .loginInputWachtwoord {
     display: flex !important;

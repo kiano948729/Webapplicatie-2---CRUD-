@@ -1,4 +1,5 @@
 <?php
+session_start();
 global $conn;
 $current_page = basename($_SERVER['PHP_SELF']);
 require_once 'backend/databaseConnect.php';
@@ -43,8 +44,8 @@ if (isset($_POST["Registreren-Knop"])) {
     <meta name="google" content="notranslate">
     <title>Vakanties Boeken | Naam</title>
     <link rel="stylesheet" href="css/JoeStyle.css">
-    <link rel="icon" href="img/CompassLogo.png" type="Images/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="../img/CompassLogo.png" type="Images/png">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,55 +56,26 @@ if (isset($_POST["Registreren-Knop"])) {
 <div class="Afbeelding-Achtergrond-Login">
 
     <header>
-        <?php require_once("components/header.php") ?>
+        <?php require_once("components/header.php")?>
     </header>
     <main>
         <div class="loginFrameRij">
-            <div class="onzichtbareFrameRegistreren">
-                <div class="registrerenFrame">
-                    <div class="loginTextFrame">
-                        <h1>Registreren</h1>
-                    </div>
-                    <form action="registreren.php" method="post">
-                        <div class="textBovenInput">
-                            <h2 class="normaalText">Naam</h2>
-                        </div>
-                        <input class="loginInput" name="username" placeholder="Naam" type="text">
-
-                        <div class="textBovenInput">
-                            <h2 class="normaalText">Email</h2>
-                        </div>
-                        <input class="loginInput" name="email" placeholder="Email" type="text">
-
-                        <div class="textBovenInput">
-                            <h2 class="normaalText">Wachtwoord</h2>
-                        </div>
-                        <input class="loginInput" name="password" placeholder="Wachtwoord" type="password">
-
-                        <div class="knopRij">
-                            <button class="loginKnop" name="Registreren-Knop" type="submit">
-                                <h2 class="Witte-Text">Registreren</h2>
-                            </button>
-                        </div>
-                    </form>
+            <div class="registrerenFrame">
+                <div class="handLogoFrame">
+                    <i id="regristreerLogo" class="fa-solid fa-right-to-bracket"></i>
                 </div>
-                <div class="loginFrameRedirect">
-                    <div class="loginTextFrameRedirect">
-                        <h1 class="boldText">al een account?</h1>
-                    </div>
-                    <div class="TextFrameRedirect">
-                        <h2 class="normaalText">U kan hier onder inloggen</h2>
-                    </div>
-                    <div class="logoRij">
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </div>
-
-                    <div class="knopRij">
-                        <button class="loginKnop" name="Login-Knop" type="submit">
-                            <h2 class="Witte-Text">Inloggen</h2>
-                        </button>
-                    </div>
+                <div class="textFrameLogin">
+                    <h1 class="grijsText">Maak een account aan</h1>
                 </div>
+                <form action="registreren.php" method="post">
+                    <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
+                    <input class="loginInputWachtwoord" name="email" placeholder="email" type="text">
+                    <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
+                    <button class="filter-knop" name="Registreren-Knop" type="submit">
+                        <h2 class="Witte-Text">Maken</h2>
+                    </button>
+                    <h4 class="grijsText">Al een account?&nbsp;<a class="blauwText" href="login.php">Klik hier</a></h4>
+                </form>
             </div>
         </div>
     </main>
