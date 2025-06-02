@@ -1,23 +1,16 @@
 <?php
 session_start();
-?>
-<?php
-global $conn;
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
-<?php
 require_once 'backend/databaseConnect.php';
 
-// Controleer of er een ingelogde gebruiker is
 $current_user = null;
 if (isset($_SESSION['user_id'])) {
-    $query = "SELECT username FROM users WHERE id = :id";
+    $query = "SELECT username FROM users WHERE user_id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([':id' => $_SESSION['user_id']]);
     $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
 }
-?>
-<?php
+
+// Verbind met database
 try {
     $connection = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -26,20 +19,26 @@ try {
     die("Databaseverbinding mislukt: " . $e->getMessage());
 }
 
+// Login-verwerking
 if (isset($_POST["Registreren-Knop"])) {
-    $sql = "SELECT * FROM users WHERE password = :password AND username = :username";
+    $sql = "SELECT user_id, username, password FROM users WHERE username = :username";
     $statement = $connection->prepare($sql);
     $statement->bindParam(":username", $_POST['username']);
-    $statement->bindParam(":password", $_POST['password']);
     $statement->execute();
     $gebruiker = $statement->fetch();
-    if ($gebruiker) {
+
+    if ($gebruiker && password_verify($_POST['password'], $gebruiker['password'])) {
+        $_SESSION['user_id'] = $gebruiker['user_id'];
         $_SESSION['username'] = $gebruiker['username'];
         header("Location: index.php");
         exit;
+    } else {
+        // Optioneel: foutmelding
+        echo "<script>alert('Onjuiste gebruikersnaam of wachtwoord');</script>";
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -57,34 +56,37 @@ if (isset($_POST["Registreren-Knop"])) {
     <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-<div class="Afbeelding-Achtergrond-Login">
 
-    <header>
-        <?php require_once("components/header.php")?>
-    </header>
-    <main>
-        <div class="loginFrameRij">
-            <div class="loginFrame">
-                <div class="handLogoFrame">
-                    <i id="HandLogo" class="fa-solid fa-hand"></i>
+<body>
+    <div class="Afbeelding-Achtergrond-Login">
+
+        <header>
+            <?php require_once("components/header.php") ?>
+        </header>
+        <main>
+            <div class="loginFrameRij">
+                <div class="loginFrame">
+                    <div class="handLogoFrame">
+                        <i id="HandLogo" class="fa-solid fa-hand"></i>
+                    </div>
+                    <div class="textFrameLogin">
+                        <h1 class="grijsText">Welkom terug</h1>
+                    </div>
+                    <form action="login.php" method="post">
+                        <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
+                        <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
+                        <button class="filter-knop" name="Registreren-Knop" type="submit">
+                            <h2 class="Witte-Text">Login</h2>
+                        </button>
+                        <h4 class="grijsText">Nog geen account?&nbsp;<a class="blauwText" href="registreren.php">Klik
+                                hier</a></h4>
+                    </form>
                 </div>
-                <div class="textFrameLogin">
-                    <h1 class="grijsText">Welkom terug</h1>
-                </div>
-                <form action="login.php" method="post">
-                    <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
-                    <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
-                    <button class="filter-knop" name="Registreren-Knop" type="submit">
-                        <h2 class="Witte-Text">Login</h2>
-                    </button>
-                    <h4 class="grijsText">Nog geen account?&nbsp;<a class="blauwText" href="registreren.php">Klik hier</a></h4>
-                </form>
             </div>
-        </div>
-    </main>
-    <footer>
-    </footer>
+        </main>
+        <footer>
+        </footer>
 </body>

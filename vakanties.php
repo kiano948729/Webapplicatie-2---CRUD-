@@ -91,8 +91,8 @@ if (isset($_SESSION['user_id'])) {
                 <div class="content-header-navigatie">
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
-                            <button type="button"
-                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
+                        <button type="button"
+                            onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
                         <?php endif; ?>
 
@@ -193,6 +193,18 @@ if (isset($_SESSION['user_id'])) {
                                 <h3><?= htmlspecialchars($deal['destination']) ?></h3>
                                 <p><?= htmlspecialchars($deal['description']) ?></p>
                                 <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
+
+                                <!-- Boek-knop -->
+                                <?php if (isset($_SESSION['user_id'])): ?>
+                                    <form action="backend/boeken.php" method="POST">
+                                        <input type="hidden" name="deal_id" value="<?= $deal['deal_id'] ?>">
+                                        <input type="hidden" name="start_date" value="<?= date('Y-m-d') ?>">
+                                        <input type="hidden" name="end_date" value="<?= date('Y-m-d', strtotime('+7 days')) ?>">
+                                        <button type="submit">Boek deze deal</button>
+                                    </form>
+                                <?php else: ?>
+                                    <p><a href="login.php">Log in</a> om te boeken</p>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
