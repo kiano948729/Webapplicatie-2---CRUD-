@@ -27,7 +27,7 @@ try {
 }
 
 if (isset($_POST["Registreren-Knop"])) {
-    $sql = "SELECT * FROM users WHERE password = :password AND username = :username";
+    $sql = "SELECT * FROM users WHERE email = :email";
     $statement = $connection->prepare($sql);
     $statement->bindParam(":username", $_POST['username']);
     $statement->bindParam(":password", $_POST['password']);
@@ -67,21 +67,18 @@ if (isset($_POST["Registreren-Knop"])) {
     </header>
     <main>
         <div class="loginFrameRij">
-            <div class="loginFrame">
+            <div class="loginResetFrame">
                 <div class="handLogoFrame">
-                    <i id="HandLogo" class="fa-solid fa-hand"></i>
+                    <i id="emailLogo" class="fa-solid fa-envelope"></i>
                 </div>
                 <div class="textFrameLogin">
-                    <h1 class="grijsText">Welkom terug</h1>
+                    <h1 class="grijsText">Typ u email in</h1>
                 </div>
-                <form action="login.php" method="post">
-                    <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
-                    <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
+                <form action="Reset.php" method="post">
+                    <input class="loginInputNaam" name="username" placeholder="Email" type="text">
                     <button class="filter-knop" name="Registreren-Knop" type="submit">
-                        <h2 class="Witte-Text">Login</h2>
+                        <h2 class="Witte-Text">verifiëren</h2>
                     </button>
-                    <h4 class="grijsText">Nog geen account?&nbsp;<a class="blauwText" href="registreren.php">Klik hier</a></h4>
-                    <a class="blauwText" href="Reset.php">Wachtwoord of Naam vergeten?</a>
                 </form>
             </div>
         </div>
