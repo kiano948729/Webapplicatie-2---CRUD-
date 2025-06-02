@@ -4,7 +4,6 @@ require 'conn.php';
 $locatie = $_GET['locatie'] ?? '';
 $checkIn = $_GET['check-in'] ?? '';
 $checkOut = $_GET['check-out'] ?? '';
-$deelnemers = $_GET['deelnemers'] ?? '';
 $filter = $_GET['filter'] ?? '';
 
 $sql = "SELECT vd.*, a.type, a.location
@@ -24,24 +23,19 @@ if (!empty($filter)) {
     $params[':type'] = $filter;
 }
 
-if (!empty($deelnemers)) {
-    $sql .= " AND vd.deelnemers >= :deelnemers";
-    $params[':deelnemers'] = $deelnemers;
-}
-
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($results) === 0): ?>
-    <p>No vacation deals found. Please adjust your search criteria.</p>
+    <p>Geen vakantiedeals gevonden. Pas je zoekcriteria aan.</p>
 <?php else:
     foreach ($results as $deal): ?>
         <div class="vakantie-kaart">
+            <img src="<?= htmlspecialchars($deal['photo_url']) ?>" alt="Foto van <?= htmlspecialchars($deal['destination']) ?>">
             <h3><?= htmlspecialchars($deal['destination']) ?></h3>
             <p><?= htmlspecialchars($deal['description']) ?></p>
-            <img src="<?= htmlspecialchars($deal['photo_url']) ?>" alt="Foto">
-            <p>Price: €<?= htmlspecialchars($deal['price']) ?></p>
+            <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
         </div>
 <?php
     endforeach;
