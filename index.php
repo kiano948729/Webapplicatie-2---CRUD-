@@ -12,7 +12,7 @@ include 'backend/fetch_deals.php';
 // Controleer of er een ingelogde gebruiker is
 $current_user = null;
 if (isset($_SESSION['user_id'])) {
-    $query = "SELECT username FROM users WHERE id = :id";
+    $query = "SELECT username FROM users WHERE user_id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([':id' => $_SESSION['user_id']]);
     $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
