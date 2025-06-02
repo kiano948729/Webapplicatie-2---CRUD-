@@ -687,3 +687,266 @@ label {
     padding: 20px;
     text-align: center;
 }
+
+.mini-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--gap-lg);
+    padding: var(--gap-lg);
+    background: var(--bg-light);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px var(--card-shadow);
+    margin: 0 var(--gap-lg) var(--gap-md);
+    opacity: 0.9;
+}
+
+.dash-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--gap-md);
+    box-shadow: 0 2px 8px var(--card-shadow);
+    text-align: center;
+    transition: transform var(--transition);
+}
+
+.dash-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--card-shadow);
+}
+
+.dash-card h4 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.dash-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.Afbeelding-Berg {
+    background-image: url(../img/index_img/afbeelding3.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+/* ============================= */
+/* Vakanties Zoekblok Styling    */
+/* ============================= */
+
+.vakanties-main-blok {
+    background-color: #fff;
+    padding: var(--gap-lg);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 16px var(--card-shadow);
+    max-width: 1000px;
+    margin: var(--gap-lg) auto;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.vakanties-main-blok h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--gap-md);
+    color: var(--text-dark);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Formulier layout */
+.vakanties-main-blok form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+/* Inputrij */
+.vakanties-main-blok .input-rij {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-md);
+}
+
+/* Invoerblokken */
+.vakanties-main-blok .invoer-blok {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vakanties-main-blok .invoer-blok label {
+    margin-bottom: var(--gap-sm);
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.vakanties-main-blok .invoer-blok input {
+    padding: var(--gap-sm) var(--gap-md);
+    border: 1px solid var(--bg-dark);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.vakanties-main-blok .invoer-blok input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 169, 240, 0.2);
+}
+
+/* Radiobuttons */
+.vakanties-main-blok .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap-sm);
+    margin-top: var(--gap-md);
+}
+
+.vakanties-main-blok .filters input[type="radio"] {
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.vakanties-main-blok .filters label {
+    margin-right: var(--gap-md);
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-dark);
+    transition: color var(--transition);
+}
+
+.vakanties-main-blok .filters input[type="radio"]:checked+label {
+    color: var(--primary);
+}
+
+/* Zoekknop */
+.vakanties-main-blok .zoek-knop {
+    margin-top: var(--gap-md);
+    display: flex;
+    justify-content: center;
+}
+
+.vakanties-main-blok .zoek-knop button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(102, 169, 240, 0.3);
+}
+
+.vakanties-main-blok .zoek-knop button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(102, 169, 240, 0.4);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .vakanties-main-blok .input-rij {
+        flex-direction: column;
+    }
+
+    .vakanties-main-blok .filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vakanties-main-blok .zoek-knop {
+        justify-content: stretch;
+    }
+}
+
+.populaire-themas {
+    padding: var(--gap-lg);
+    text-align: center;
+}
+
+.populaire-themas h2 {
+    font-size: 2rem;
+    margin-bottom: var(--gap-md);
+    color: var(--text-dark);
+}
+
+.thema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap-md);
+    max-width: 1000px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.thema-kaart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thema-kaart:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Achtergrondkleuren per categorie */
+.zonvakantie {
+    background: #f6b73c;
+}
+
+.citytrip {
+    background: #4a90e2;
+}
+
+.avontuur {
+    background: #50e3c2;
+}
+
+.allinclusive {
+    background: #bd10e0;
+}
+
+.lastminute {
+    background: #e94e77;
+}
+
+.index-info {
+    overflow-y: auto;
+    max-height: 1600px;
+}
+
+/* Custom scrollbar */
+.index-info::-webkit-scrollbar {
+    width: 8px;
+}
+
+.index-info::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: var(--radius);
+}
+
+.index-info::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: var(--radius);
+}
+
+.index-info::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+}
