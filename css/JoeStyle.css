@@ -36,7 +36,14 @@ body {
   .loginFrame {
     background-color: rgb(255, 255, 255);
     width: 430px;
-    height: 450px;
+    height: 480px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+  }
+  .loginResetFrame {
+    background-color: rgb(255, 255, 255);
+    width: 430px;
+    height: 370px;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
   }
@@ -67,6 +74,10 @@ body {
     animation: rotateBox 2s ease-in-out infinite;
     transform-origin: center;
 
+  }
+  #emailLogo {
+    color: #66A9F0;
+    font-size: 40px;
   }
   @keyframes rotateBox {
     0%   { transform: rotate(20deg); }
