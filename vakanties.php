@@ -43,6 +43,7 @@ if (isset($_SESSION['user_id'])) {
     <meta name="google" content="notranslate">
     <title>Menu</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/JoeStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -79,7 +80,9 @@ if (isset($_SESSION['user_id'])) {
                     <div class="side-bar-main-navigatie">
                         <a href="index.php"><i class="fa-solid fa-compass"></i>Home</a>
                         <a href="overOns.php"><i class="fa-solid fa-person-hiking"></i>Over ons</a>
+
                         <a href="contact.php"><i class="fa-solid fa-square-envelope"></i>Contact</a>
+                        <a href="privacy.php"><i class="fa-solid fa-fingerprint"></i>privacy</a>
                     </div>
                 </aside>
             </div>
@@ -88,8 +91,8 @@ if (isset($_SESSION['user_id'])) {
                 <div class="content-header-navigatie">
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
-                            <button type="button"
-                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
+                        <button type="button"
+                            onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
                         <?php endif; ?>
 
@@ -190,6 +193,18 @@ if (isset($_SESSION['user_id'])) {
                                 <h3><?= htmlspecialchars($deal['destination']) ?></h3>
                                 <p><?= htmlspecialchars($deal['description']) ?></p>
                                 <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
+
+                                <!-- Boek-knop -->
+                                <?php if (isset($_SESSION['user_id'])): ?>
+                                    <form action="backend/boeken.php" method="POST">
+                                        <input type="hidden" name="deal_id" value="<?= $deal['deal_id'] ?>">
+                                        <input type="hidden" name="start_date" value="<?= date('Y-m-d') ?>">
+                                        <input type="hidden" name="end_date" value="<?= date('Y-m-d', strtotime('+7 days')) ?>">
+                                        <button type="submit">Boek deze deal</button>
+                                    </form>
+                                <?php else: ?>
+                                    <p><a href="login.php">Log in</a> om te boeken</p>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
