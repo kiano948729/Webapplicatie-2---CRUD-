@@ -114,7 +114,7 @@ if (isset($_SESSION['user_id'])) {
 
                         <div class="filter-rechts">
                             <select>
-                                <option>Sorteer op datum</option>
+                                <option>Sorteer op prijs</option>
                                 <option>Sorteer op prijs (laag-hoog)</option>
                                 <option>Sorteer op prijs (hoog-laag)</option>
                             </select>
@@ -134,7 +134,34 @@ if (isset($_SESSION['user_id'])) {
                                 </p>
                                 <p><?= htmlspecialchars($accommodation['description']) ?></p>
                                 <p><strong>€ <?= htmlspecialchars($accommodation['price']) ?></strong></p>
+
+                                <!-- Boekingsformulier voor accommodatie -->
+                                <?php if (isset($_SESSION['user_id'])): ?>
+                                    <form action="backend/boek_accommodatie.php" method="POST">
+                                        <input type="hidden" name="accommodation_id"
+                                            value="<?= $accommodation['accommodation_id'] ?>">
+                                        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+
+                                        <label for="start_date_<?= $accommodation['accommodation_id'] ?>">Startdatum:</label>
+                                        <input type="date" id="start_date_<?= $accommodation['accommodation_id'] ?>"
+                                            name="start_date" required>
+
+                                        <label for="end_date_<?= $accommodation['accommodation_id'] ?>">Einddatum:</label>
+                                        <input type="date" id="end_date_<?= $accommodation['accommodation_id'] ?>"
+                                            name="end_date" required>
+
+                                        <label for="aantal_personen_<?= $accommodation['accommodation_id'] ?>">Aantal
+                                            personen:</label>
+                                        <input type="number" id="aantal_personen_<?= $accommodation['accommodation_id'] ?>"
+                                            name="aantal_personen" min="1" value="1" required>
+
+                                        <button type="submit">Boek deze accommodatie</button>
+                                    </form>
+                                <?php else: ?>
+                                    <p><a href="login.php">Log in</a> om te boeken</p>
+                                <?php endif; ?>
                             </div>
+
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -196,12 +223,18 @@ if (isset($_SESSION['user_id'])) {
 
                                 <!-- Boek-knop -->
                                 <?php if (isset($_SESSION['user_id'])): ?>
-                                    <form action="backend/boeken.php" method="POST">
+                                    <form action="backend/boek_deal.php" method="POST">
                                         <input type="hidden" name="deal_id" value="<?= $deal['deal_id'] ?>">
                                         <input type="hidden" name="start_date" value="<?= date('Y-m-d') ?>">
                                         <input type="hidden" name="end_date" value="<?= date('Y-m-d', strtotime('+7 days')) ?>">
+
+                                        <label for="aantal_personen_<?= $deal['deal_id'] ?>">Aantal personen:</label>
+                                        <input type="number" id="aantal_personen_<?= $deal['deal_id'] ?>" name="aantal_personen"
+                                            min="1" value="1" required>
+
                                         <button type="submit">Boek deze deal</button>
                                     </form>
+
                                 <?php else: ?>
                                     <p><a href="login.php">Log in</a> om te boeken</p>
                                 <?php endif; ?>

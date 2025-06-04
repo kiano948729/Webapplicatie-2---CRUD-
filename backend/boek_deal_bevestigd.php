@@ -18,6 +18,6 @@ if (!$booking_id) {
     <h1>Bedankt voor je boeking!</h1>
     <p>Je boeking-ID is: <strong><?= $booking_id ?></strong></p>
     <p>We hebben een bevestiging gestuurd naar je e-mailadres.</p>
-    <a href="../vakantie.php">Terug naar homepage</a>
+    <a href="../vakanties.php">Terug naar homepage</a>
 </body>
-</html>
+</html> 
