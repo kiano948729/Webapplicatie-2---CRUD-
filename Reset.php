@@ -6,18 +6,6 @@ global $conn;
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
-require_once 'backend/databaseConnect.php';
-
-// Controleer of er een ingelogde gebruiker is
-$current_user = null;
-if (isset($_SESSION['user_id'])) {
-    $query = "SELECT username FROM users WHERE id = :id";
-    $statement = $conn->prepare($query);
-    $statement->execute([':id' => $_SESSION['user_id']]);
-    $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
-}
-?>
-<?php
 try {
     $connection = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -29,14 +17,18 @@ try {
 if (isset($_POST["Registreren-Knop"])) {
     $sql = "SELECT * FROM users WHERE email = :email";
     $statement = $connection->prepare($sql);
-    $statement->bindParam(":username", $_POST['username']);
-    $statement->bindParam(":password", $_POST['password']);
+    $statement->bindParam(":email", $_POST['email']);
     $statement->execute();
-    $gebruiker = $statement->fetch();
-    if ($gebruiker) {
-        $_SESSION['username'] = $gebruiker['username'];
-        header("Location: index.php");
+    $Bewerker = $statement->fetch();
+    if ($Bewerker) {
+        $_SESSION["Gebruiker"] = true;
+        $_SESSION['user_id'] = $Bewerker['user_id'];
+        $_SESSION['username'] = $Bewerker['username'];
+        header("Location: Account.php");
         exit;
+    } else {
+        // Optioneel: foutmelding
+        echo "<script>alert('Onjuiste email');</script>";
     }
 }
 ?>
@@ -75,7 +67,7 @@ if (isset($_POST["Registreren-Knop"])) {
                     <h1 class="grijsText">Typ u email in</h1>
                 </div>
                 <form action="Reset.php" method="post">
-                    <input class="loginInputNaam" name="username" placeholder="Email" type="text">
+                    <input class="loginInputNaam" name="email" placeholder="email" type="text">
                     <button class="filter-knop" name="Registreren-Knop" type="submit">
                         <h2 class="Witte-Text">verifiëren</h2>
                     </button>
