@@ -3,6 +3,8 @@ session_start();
 require_once 'backend/databaseConnect.php';
 
 $current_user = null;
+global $conn;
+
 if (isset($_SESSION['user_id'])) {
     $query = "SELECT username FROM users WHERE user_id = :id";
     $statement = $conn->prepare($query);
@@ -28,9 +30,10 @@ if (isset($_POST["Registreren-Knop"])) {
     $gebruiker = $statement->fetch();
 
     if ($gebruiker && password_verify($_POST['password'], $gebruiker['password'])) {
+        $_SESSION["Gebruiker"] = true;
         $_SESSION['user_id'] = $gebruiker['user_id'];
         $_SESSION['username'] = $gebruiker['username'];
-        header("Location: index.php");
+        header("Location: Account.php");
         exit;
     } else {
         // Optioneel: foutmelding
@@ -62,7 +65,6 @@ if (isset($_POST["Registreren-Knop"])) {
 
 <body>
     <div class="Afbeelding-Achtergrond-Login">
-
         <header>
             <?php require_once("components/header.php") ?>
         </header>
@@ -75,8 +77,6 @@ if (isset($_POST["Registreren-Knop"])) {
                     <div class="textFrameLogin">
                         <h1 class="grijsText">Welkom terug</h1>
                     </div>
-                
-                </div>
 
                 <form action="login.php" method="post">
                     <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
