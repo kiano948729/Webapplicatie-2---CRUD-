@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+console.log("jsK.js is geladen ✅");
+document.addEventListener("DOMContentLoaded", function () { 
+    koppelShowMoreKnoppen();
     const navButtons = document.querySelectorAll(".nav-btn");
     const contentSections = document.querySelectorAll(".content-section");
     const form = document.getElementById('zoekForm');
@@ -32,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => response.text())
                 .then(html => {
                     resultsDiv.innerHTML = html;
+
+                    koppelShowMoreKnoppen();
                 })
                 .catch(error => {
                     console.error('Zoeken mislukt:', error);
@@ -77,4 +81,29 @@ applyBtn.addEventListener('click', () => {
 
     dashboard.style.display = 'none'; // Sluit dashboard na toepassen
 });
+function koppelShowMoreKnoppen() {
+    console.log("koppelShowMoreKnoppen wordt uitgevoerd");
+
+    document.querySelectorAll('.show-more-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            console.log("Klik op meer info knop, id =", id);
+
+            const overlay = document.getElementById(`expanded-${id}`);
+            if (overlay) {
+                overlay.style.display = 'block';
+            } else {
+                console.warn("Overlay niet gevonden voor id", id);
+            }
+        });
+    });
+}
+
+
+function closeExpandedInfo(id) {
+    const overlay = document.getElementById(`expanded-${id}`);
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
+}
 

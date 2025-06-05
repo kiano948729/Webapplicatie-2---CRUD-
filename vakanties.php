@@ -95,8 +95,11 @@ if (isset($_SESSION['user_id'])) {
                             onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
                         <?php endif; ?>
-
-
+                        <?php if ($current_user): ?>
+                            <small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small>
+                        <?php else: ?>
+                            <small class="logged-in-user" style="color: var(--text-light);">Niet ingelogd</small>
+                        <?php endif; ?>
                     </div>
                     <div class="filter-balk">
                         <div class="filter-container">
@@ -134,32 +137,77 @@ if (isset($_SESSION['user_id'])) {
                                 </p>
                                 <p><?= htmlspecialchars($accommodation['description']) ?></p>
                                 <p><strong>€ <?= htmlspecialchars($accommodation['price']) ?></strong></p>
-
+                                <button class="show-more-btn" data-id="<?= $accommodation['accommodation_id'] ?>">Meer
+                                    info</button>
                                 <!-- Boekingsformulier voor accommodatie -->
                                 <?php if (isset($_SESSION['user_id'])): ?>
-                                    <form action="backend/boek_accommodatie.php" method="POST">
-                                        <input type="hidden" name="accommodation_id"
-                                            value="<?= $accommodation['accommodation_id'] ?>">
-                                        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+                                    <!-- In beide vakantie-kaart secties (homeContent & trendingContent) -->
+                                    <div class="boeking-form">
+                                        <h4>Boek nu</h4>
+                                        <form action="backend/boek_accommodatie.php" method="POST">
+                                            <input type="hidden" name="accommodation_id"
+                                                value="<?= $accommodation['accommodation_id'] ?>">
+                                            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
 
-                                        <label for="start_date_<?= $accommodation['accommodation_id'] ?>">Startdatum:</label>
-                                        <input type="date" id="start_date_<?= $accommodation['accommodation_id'] ?>"
-                                            name="start_date" required>
+                                            <label
+                                                for="start_date_<?= $accommodation['accommodation_id'] ?>">Startdatum:</label>
+                                            <input type="date" id="start_date_<?= $accommodation['accommodation_id'] ?>"
+                                                name="start_date" required>
 
-                                        <label for="end_date_<?= $accommodation['accommodation_id'] ?>">Einddatum:</label>
-                                        <input type="date" id="end_date_<?= $accommodation['accommodation_id'] ?>"
-                                            name="end_date" required>
+                                            <label for="end_date_<?= $accommodation['accommodation_id'] ?>">Einddatum:</label>
+                                            <input type="date" id="end_date_<?= $accommodation['accommodation_id'] ?>"
+                                                name="end_date" required>
 
-                                        <label for="aantal_personen_<?= $accommodation['accommodation_id'] ?>">Aantal
-                                            personen:</label>
-                                        <input type="number" id="aantal_personen_<?= $accommodation['accommodation_id'] ?>"
-                                            name="aantal_personen" min="1" value="1" required>
+                                            <label for="aantal_personen_<?= $accommodation['accommodation_id'] ?>">Aantal
+                                                personen:</label>
+                                            <input type="number" id="aantal_personen_<?= $accommodation['accommodation_id'] ?>"
+                                                name="aantal_personen" min="1" value="1" required>
 
-                                        <button type="submit">Boek deze accommodatie</button>
-                                    </form>
+                                            <button type="submit" class="book-btn">Boek deze reis</button>
+                                        </form>
+                                    </div>
                                 <?php else: ?>
                                     <p><a href="login.php">Log in</a> om te boeken</p>
                                 <?php endif; ?>
+                            </div>
+
+                            <div id="expanded-<?= $accommodation['accommodation_id'] ?>" class="expanded-info-overlay">
+                                <div class="expanded-content">
+                                    <button class="close-btn"
+                                        onclick="closeExpandedInfo(<?= $accommodation['accommodation_id'] ?>)">&times;</button>
+                                    <h2><?= htmlspecialchars($accommodation['name']) ?></h2>
+                                    <p>Type: <?= htmlspecialchars($accommodation['type']) ?></p>
+                                    <p>Locatie: <?= htmlspecialchars($accommodation['location']) ?></p>
+                                    <p>Prijs: € <?= htmlspecialchars($accommodation['price']) ?></p>
+                                    <p><?= htmlspecialchars($accommodation['description']) ?></p>
+                                    <form method="POST" action="backend/submit_review.php">
+                                        <input type="hidden" name="accommodation_id"
+                                            value="<?= htmlspecialchars($accommodation['accommodation_id']); ?>">
+                                        <label for="rating">Beoordeling (1-5):</label>
+                                        <select name="rating" id="rating" required>
+                                            <option value="">Kies een score</option>
+                                            <option value="1">1 - Slecht</option>
+                                            <option value="2">2 - Redelijk</option>
+                                            <option value="3">3 - Goed</option>
+                                            <option value="4">4 - Zeer goed</option>
+                                            <option value="5">5 - Uitstekend</option>
+                                        </select>
+
+                                        <br><br>
+
+                                        <label for="comment">Je recensie:</label><br>
+                                        <textarea name="comment" id="comment" rows="5" cols="40"
+                                            placeholder="Schrijf hier je ervaring..." required></textarea>
+
+                                        <br><br>
+
+                                        <button type="submit">Verstuur recensie</button>
+                                    </form>
+                                    <h3>Recensies</h3>
+                                    <div id="reviews">
+
+                                    </div>
+                                </div>
                             </div>
 
                         <?php endforeach; ?>
@@ -232,7 +280,7 @@ if (isset($_SESSION['user_id'])) {
                                         <input type="number" id="aantal_personen_<?= $deal['deal_id'] ?>" name="aantal_personen"
                                             min="1" value="1" required>
 
-                                        <button type="submit">Boek deze deal</button>
+                                        <button type="submit" class="book-btn">Boek deze deal</button>
                                     </form>
 
                                 <?php else: ?>
