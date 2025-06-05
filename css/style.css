@@ -254,10 +254,49 @@ nav {
     gap: var(--gap-md);
 }
 
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--gap-md) var(--gap-lg);
+    background-color: #fff;
+    border-bottom: 1px solid var(--bg-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius);
+    margin: 0 var(--gap-md);
+}
+
 .content-header h2 {
     margin: 0;
     font-size: 1.75rem;
     font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.content-header button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 4px 10px rgba(102, 169, 240, 0.2);
+}
+
+.content-header button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(102, 169, 240, 0.3);
+}
+
+.logged-in-user {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-left: auto;
+    margin-right: var(--gap-md);
 }
 
 .filter-balk {
@@ -266,6 +305,16 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     gap: var(--gap-md);
+    padding: 0 var(--gap-md);
+    margin-bottom: var(--gap-md);
+}
+
+.filter-rechts select {
+    padding: var(--gap-sm) var(--gap-md);
+    border-radius: var(--radius);
+    border: 1px solid var(--bg-dark);
+    font-size: 0.875rem;
+    min-width: 160px;
 }
 
 .filter-dash {
@@ -951,4 +1000,101 @@ label {
 
 .index-info::-webkit-scrollbar-thumb:hover {
     background-color: var(--scrollbar-thumb-hover);
+}
+
+/* ============================= */
+/*  Boekingssectie styling       */
+/* ============================= */
+
+.boeking-form {
+    margin-top: var(--gap-md);
+    padding: var(--gap-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color var(--transition);
+}
+
+.boeking-form h4 {
+    font-size: 1rem;
+    margin-bottom: var(--gap-sm);
+    color: var(--text-dark);
+}
+
+.boeking-form label {
+    display: block;
+    margin-top: var(--gap-sm);
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.boeking-form input[type="date"],
+.boeking-form input[type="number"] {
+    width: 100%;
+    padding: var(--gap-sm);
+    border: 1px solid var(--bg-dark);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.boeking-form input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 169, 240, 0.2);
+}
+
+.book-btn {
+    margin-top: var(--gap-md);
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 4px 10px rgba(102, 169, 240, 0.2);
+}
+
+.book-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(102, 169, 240, 0.3);
+}
+.expanded-info-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.expanded-content {
+    background-color: white;
+    width: 80%;
+    max-width: 1700px;
+    height: 700px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    top: 10%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
 }
