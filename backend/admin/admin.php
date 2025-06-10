@@ -37,6 +37,7 @@ if (!isset($conn)) {
             <button class="tab-button" data-tab="boeking_accomodatie">Boekingen accommodaties</button>
             <button class="tab-button" data-tab="addomodatie_review">review accommodaties</button>
             <button class="tab-button" data-tab="Contact_bericht">Contact berichten</button>
+
         </div>
 
         <div class="search-bar">
@@ -71,6 +72,7 @@ if (!isset($conn)) {
             <section id="Contact_bericht-section" class="tab-content">
                 <?php include 'contact/list.php'; ?>
             </section>
+
         </div>
     </main>
 

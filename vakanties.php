@@ -9,6 +9,35 @@ require 'backend/databaseConnect.php';
 require 'backend/conn.php';
 include 'backend/fetch_bestemmingen.php';
 include 'backend/fetch_deals.php';
+include 'backend/fetch_reviews.php';
+// Haal alle recensies per accommodatie op via INNER JOIN
+$reviews_per_accommodatie = [];
+
+$reviewQuery = "
+    SELECT 
+        r.comment,
+        r.rating,
+        r.review_date AS date,
+        r.accommodation_id,   
+        u.username
+    FROM accommodatie_reviews r
+    INNER JOIN users u ON r.user_id = u.user_id
+    WHERE r.approved = 1
+";
+
+$stmt = $conn->prepare($reviewQuery);
+$stmt->execute();
+$all_reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Groepeer recensies per accommodatie_id
+foreach ($all_reviews as $review) {
+    $accommodationId = $review['accommodation_id'];
+    if (!isset($reviews_per_accommodatie[$accommodationId])) {
+        $reviews_per_accommodatie[$accommodationId] = [];
+    }
+    $reviews_per_accommodatie[$accommodationId][] = $review;
+}
+
 //hardcoded admin voor test gebruik
 $current_user = null;
 $is_admin = false;
@@ -204,8 +233,29 @@ if (isset($_SESSION['user_id'])) {
                                         <button type="submit">Verstuur recensie</button>
                                     </form>
                                     <h3>Recensies</h3>
-                                    <div id="reviews">
-
+                                    <div class="reviews-container">
+                                        <?php if (!empty($reviews_per_accommodatie[$accommodation['accommodation_id']])): ?>
+                                            <?php foreach ($reviews_per_accommodatie[$accommodation['accommodation_id']] as $review): ?>
+                                                <div class="review-item">
+                                                    <p><strong><?= htmlspecialchars($review['username']) ?></strong> –
+                                                        <?= date('d-m-Y', strtotime($review['date'])) ?>
+                                                    </p>
+                                                    <p>
+                                                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                            <?php if ($i <= $review['rating']): ?>
+                                                                ★
+                                                            <?php else: ?>
+                                                                ☆
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>
+                                                    </p>
+                                                    <p><?= nl2br(htmlspecialchars($review['comment'])) ?></p>
+                                                    <hr>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p>Geen recensies gevonden voor deze accommodatie.</p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
