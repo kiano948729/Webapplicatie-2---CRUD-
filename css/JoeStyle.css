@@ -99,6 +99,13 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
 }
+.contactFrame {
+    background-color: rgb(255, 255, 255);
+    width: 550px;
+    height: 550px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.552);
+}
 
 .loginBewerkFrame {
     background-color: rgb(255, 255, 255);
@@ -144,12 +151,28 @@ body {
     font-size: 45px;
     animation: rotateBox 2s ease-in-out infinite;
     transform-origin: center;
-
+}
+#TelefoonLogo {
+    color: #66A9F0;
+    font-size: 45px;
+    animation: rotateBox2 2s ease-in-out infinite;
+    transform-origin: center;
 }
 
 #emailLogo {
     color: #66A9F0;
     font-size: 40px;
+}
+@keyframes rotateBox2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 @keyframes rotateBox {
@@ -167,6 +190,12 @@ body {
 #regristreerLogo {
     color: #66A9F0;
     font-size: 40px;
+}
+
+.contactRijNaam {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .onzichtbareFrame {
@@ -221,6 +250,36 @@ body {
     justify-self: center !important;
     width: 65% !important;
     height: 45px !important;
+    border-style: solid !important;
+    border-width: 3px !important;
+    border-radius: 10px !important;
+    border-color: #444444 !important;
+    font-family: "Rubik", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    transition: 0.2s !important;
+}
+.contactInputNaam {
+    display: flex !important;
+    margin-top: 17px !important;
+    justify-self: center !important;
+    width: 35% !important;
+    height: 45px !important;
+    border-style: solid !important;
+    border-width: 3px !important;
+    border-radius: 10px !important;
+    border-color: #444444 !important;
+    font-family: "Rubik", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    transition: 0.2s !important;
+}
+.contactInputBericht {
+    display: flex !important;
+    margin-top: 17px !important;
+    justify-self: center !important;
+    width: 70% !important;
+    height: 85px !important;
     border-style: solid !important;
     border-width: 3px !important;
     border-radius: 10px !important;
