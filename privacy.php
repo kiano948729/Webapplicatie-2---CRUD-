@@ -63,7 +63,7 @@ if (isset($_SESSION['user_id'])) {
         <ol>
             <li>Account gegevens vergelijken: Om de gebruikers informatie zoals wachtwoorden en namen te vergelijken om u in te kunnen loggen.</li>
             <li>Communicatie: Om te communiceren met u via u email als u vragen heeft over onze service.</li>
-            <li>Service verbeteren: Als u bijvoorbeeld reviews achterlaat of andere feedback dan kunnen wij die reviews gebruiken om onze service te verbeteren.</li>
+            <li>Service verbeteren: Als u bijvoorbeeld reviews achterlaat of andere feedback dan kunnen wij die feedback gebruiken om onze service te verbeteren.</li>
         </ol>
     </div>
 </main>
