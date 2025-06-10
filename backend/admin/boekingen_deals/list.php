@@ -17,7 +17,7 @@ $stmt = $conn->query("
     INNER JOIN vakantie_deals d ON b.deal_id = d.deal_id
 ");
 $boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+?>      
 
 <div class="section-card">
     <div class="section-header">

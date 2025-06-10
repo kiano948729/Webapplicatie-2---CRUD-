@@ -35,6 +35,7 @@ if (!isset($conn)) {
             <button class="tab-button" data-tab="accommodations">Accommodaties</button>
             <button class="tab-button" data-tab="boeking_deal">Boekingen deals</button>
             <button class="tab-button" data-tab="boeking_accomodatie">Boekingen accommodaties</button>
+            <button class="tab-button" data-tab="addomodatie_review">review accommodaties</button>
         </div>
 
         <div class="search-bar">
@@ -60,6 +61,10 @@ if (!isset($conn)) {
 
             <section id="boeking_accomodatie-section" class="tab-content">
                 <?php include 'boekingen_accomodaties/list.php'; ?>
+            </section>
+
+            <section id="addomodatie_review" class="tab-content">
+                <?php include 'reviews/list.php'; ?>
             </section>
         </div>
     </main>
