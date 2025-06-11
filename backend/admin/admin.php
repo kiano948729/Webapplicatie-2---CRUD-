@@ -65,7 +65,7 @@ if (!isset($conn)) {
                 <?php include 'boekingen_accomodaties/list.php'; ?>
             </section>
 
-            <section id="addomodatie_review" class="tab-content">
+            <section id="addomodatie_review-section" class="tab-content">
                 <?php include 'reviews/list.php'; ?>
             </section>
 

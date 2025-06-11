@@ -18,7 +18,7 @@ $reviewQuery = "
         r.comment,
         r.rating,
         r.review_date AS date,
-        r.accommodation_id,   
+        r.accommodation_id,                             
         u.username
     FROM accommodatie_reviews r
     INNER JOIN users u ON r.user_id = u.user_id
@@ -60,6 +60,50 @@ if (isset($_SESSION['user_id'])) {
             $_SESSION['is_admin'] = true;
         }
     }
+}
+// Haal gebruikers-ID op als ingelogd
+$user_id = $_SESSION['user_id'] ?? null;
+
+// Als ingelogd, haal boekingen en reviews op
+$user_bookings = [];
+$user_reviews = [];
+
+if ($user_id) {
+    // Geboekte accommodaties via 'boeking_accommodaties'
+    $bookingQuery = "
+        SELECT 
+            ba.boeking_accommodatie_id,
+            ba.start_date,
+            ba.end_date,
+            ba.total_price,
+            ba.aantal_personen,
+            a.name AS accommodation_name,
+            a.photo_url
+        FROM boeking_accommodaties ba
+        JOIN accommodaties a ON ba.accommodation_id = a.accommodation_id
+        WHERE ba.user_id = :user_id
+        ORDER BY ba.start_date DESC
+    ";
+    $stmt = $conn->prepare($bookingQuery);
+    $stmt->execute([':user_id' => $user_id]);
+    $user_bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Eigen recensies
+    $reviewQuery = "
+        SELECT 
+            r.review_id,
+            r.rating,
+            r.comment,
+            r.review_date,
+            a.name AS accommodation_name
+        FROM accommodatie_reviews r
+        JOIN accommodaties a ON r.accommodation_id = a.accommodation_id
+        WHERE r.user_id = :user_id
+        ORDER BY r.review_date DESC
+    ";
+    $stmt = $conn->prepare($reviewQuery);
+    $stmt->execute([':user_id' => $user_id]);
+    $user_reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -143,7 +187,12 @@ if (isset($_SESSION['user_id'])) {
                                 <button id="applyFilters">Toepassen</button>
                             </div>
                         </div>
-
+                        <?php if (isset($_SESSION['review_submitted'])): ?>
+                            <div class="success-message">
+                                <?= htmlspecialchars($_SESSION['review_submitted']) ?>
+                            </div>
+                            <?php unset($_SESSION['review_submitted']); ?>
+                        <?php endif; ?>
                         <div class="filter-rechts">
                             <select>
                                 <option>Sorteer op prijs</option>
@@ -342,7 +391,66 @@ if (isset($_SESSION['user_id'])) {
                 </div>
                 <!-- Mijn vakanties -->
                 <div id="myVacationsContent" class="content-section" style="display: none;">
-                    <p>Mijn opgeslagen vakanties hier</p>
+                    <div class="my-vacations-container">
+                        <h2>Mijn Vakanties</h2>
+
+                        <!-- Geboekte accommodaties -->
+                        <section class="my-bookings">
+                            <h3>Geboekte Reizen</h3>
+                            <?php if (!empty($user_bookings)): ?>
+                                <div class="booking-grid">
+                                    <?php foreach ($user_bookings as $booking): ?>
+                                        <div class="booking-card">
+                                            <img src="<?= htmlspecialchars($booking['photo_url']) ?>"
+                                                alt="Foto van <?= htmlspecialchars($booking['accommodation_name']) ?>">
+                                            <div class="booking-info">
+                                                <h4><?= htmlspecialchars($booking['accommodation_name']) ?></h4>
+                                                <p><strong>Datum:</strong>
+                                                    <?= date('d-m-Y', strtotime($booking['start_date'])) ?> -
+                                                    <?= date('d-m-Y', strtotime($booking['end_date'])) ?>
+                                                </p>
+                                                <p><strong>Aantal personen:</strong>
+                                                    <?= htmlspecialchars($booking['aantal_personen']) ?></p>
+                                                <p><strong>Prijs:</strong>
+                                                    €<?= number_format($booking['total_price'], 2, ',', '.') ?></p>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <p>Je hebt nog geen vakanties geboekt.</p>
+                            <?php endif; ?>
+                        </section>
+
+                        <!-- Eigen recensies -->
+                        <section class="my-reviews">
+                            <h3>Mijn Recensies</h3>
+                            <?php if (!empty($user_reviews)): ?>
+                                <div class="reviews-container">
+                                    <?php foreach ($user_reviews as $review): ?>
+                                        <div class="review-item">
+                                            <h4><?= htmlspecialchars($review['accommodation_name']) ?></h4>
+                                            <p><strong>Beoordeling:</strong>
+                                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                    <?php if ($i <= $review['rating']): ?>
+                                                        ★
+                                                    <?php else: ?>
+                                                        ☆
+                                                    <?php endif; ?>
+                                                <?php endfor; ?>
+                                            </p>
+                                            <p><strong>Commentaar:</strong> <?= nl2br(htmlspecialchars($review['comment'])) ?>
+                                            </p>
+                                            <small>Gepubliceerd op:
+                                                <?= date('d-m-Y', strtotime($review['review_date'])) ?></small>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <p>Je hebt nog geen recensies geschreven.</p>
+                            <?php endif; ?>
+                        </section>
+                    </div>
                 </div>
 
             </main>
