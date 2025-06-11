@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id'])) {
     <div class="splitDivRij">
         <img class="afbeeldingDivLinks" src="img/imageMain.png">
         <div class="textColumnDiv">
-            <h1 class="boldText">Wat is backpack & go?</h1>
+            <h1 class="boldText">Wat is backpack & go</h1>
             <p>Backpack & go is een backpacking vakantie service waar als gebruiker u een backpack vakantie reis kan boeken via onze service.</p>
         </div>
     </div>
