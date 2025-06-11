@@ -7,6 +7,6 @@ if ($review_id) {
     $stmt->execute([$review_id]);
 }
 
-header("Location: ../admin_recensies.php"); // Terug naar overzichtspagina
+header("Location: ../admin.php"); // Terug naar overzichtspagina
 exit;
 ?>
