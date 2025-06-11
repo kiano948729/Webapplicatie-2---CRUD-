@@ -21,6 +21,12 @@ body {
     align-items: center;
     gap: 2%;
 }
+.centerText {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
 
 .persoonlijkeInformatieRij {
     width: 80%;
@@ -72,7 +78,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
     background-image: url('../img/images.jpg');
 }
 
@@ -484,6 +489,50 @@ input:focus {
     justify-content: center;
     height: 120px;
     align-items: center;
+}
+.achtergrondOverOns {
+    background-color: #3d90ef;
+    display: flex;
+    justify-content: center;
+    height: 120px;
+    align-items: center;
+}
+.centerTextDiv {
+    width: 40%;
+    margin-left: 30%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splitDivRij {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.splitDivRijTwee {
+    width: 100%;
+    height: 300px;
+    margin-top: 80px;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.afbeeldingDivLinks {
+    width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.32);
+}
+.textColumnDiv {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 
