@@ -22,6 +22,7 @@ if (!isset($conn)) {
     <title>Adminpaneel - Reisbureau</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="admin_css/admin.css">
+    <script src="script.js"></script>
 </head>
 
 <body class="admin-body">
@@ -37,7 +38,6 @@ if (!isset($conn)) {
             <button class="tab-button" data-tab="boeking_accomodatie">Boekingen accommodaties</button>
             <button class="tab-button" data-tab="addomodatie_review">review accommodaties</button>
             <button class="tab-button" data-tab="Contact_bericht">Contact berichten</button>
-
         </div>
 
         <div class="search-bar">
@@ -80,7 +80,6 @@ if (!isset($conn)) {
         <p>&copy; <?php echo date('Y'); ?> Reisbureau Admin Systeem</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
