@@ -207,8 +207,8 @@ if ($user_id) {
                     <div class="event-grid">
                         <?php foreach ($results as $accommodation): ?>
                             <div class="vakantie-kaart">
-                                <img src="<?= htmlspecialchars($accommodation['photo_url']) ?>"
-                                    alt="Foto van <?= htmlspecialchars($accommodation['name']) ?>">
+                                <img src="/backend/img/<?= basename($accommodation['photo_url']) ?>"
+                                    alt="<?= htmlspecialchars($accommodation['name']) ?>">
                                 <h3><?= htmlspecialchars($accommodation['name']) ?></h3>
                                 <p><span><?= htmlspecialchars($accommodation['type']) ?></span>
                                     <span><?= htmlspecialchars($accommodation['location']) ?></span>
@@ -452,7 +452,6 @@ if ($user_id) {
                         </section>
                     </div>
                 </div>
-
             </main>
         </div>
     </div>

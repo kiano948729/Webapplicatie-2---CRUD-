@@ -149,6 +149,11 @@ nav {
 /* ============================= */
 .explore-background {
     background-color: var(--bg-medium);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 40%, rgba(255, 255, 255, 0.6) 60%, rgba(0, 80, 160, 0.4) 80%, rgba(0, 60, 120, 0.7) 100%),
+        url(../img/360_F_1122878877_BxPKJUuwbUMAVPe9xPxzTX34iYdOWLkp.jpg) no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
     padding: var(--gap-lg);
 }
 
@@ -156,7 +161,6 @@ nav {
     display: flex;
     height: calc(100vh - 2 * var(--gap-lg));
     border-radius: var(--radius);
-    background: #fff;
     box-shadow: 0 4px 12px var(--card-shadow);
     overflow: hidden;
 }
@@ -209,6 +213,7 @@ nav {
     background-color: var(--bg-light);
     padding: var(--gap-lg);
     box-shadow: inset 0 0 20px var(--card-shadow);
+    opacity: 0.9;
 }
 
 .sidebar h1 {
@@ -1197,6 +1202,7 @@ label {
         display: none;
     }
 }
+
 .my-vacations-container {
     padding: var(--gap-lg);
 }
