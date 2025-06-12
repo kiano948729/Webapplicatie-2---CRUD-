@@ -38,9 +38,6 @@ foreach ($all_reviews as $review) {
     $reviews_per_accommodatie[$accommodationId][] = $review;
 }
 
-//hardcoded admin voor test gebruik
-$current_user = null;
-$is_admin = false;
 
 if (isset($_SESSION['user_id'])) {
     // Haal gebruikersnaam op
@@ -164,9 +161,10 @@ if ($user_id) {
                 <div class="content-header-navigatie">
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
-                        <button type="button"
-                            onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
+                            <button type="button"
+                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
+
                         <?php endif; ?>
                         <?php if ($current_user): ?>
                             <small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small>
