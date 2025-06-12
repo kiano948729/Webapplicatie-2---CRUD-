@@ -2,41 +2,45 @@
 session_start();
 require_once 'backend/databaseConnect.php';
 
-$current_user = null;
-global $conn;
-
-if (isset($_SESSION['user_id'])) {
-    $query = "SELECT username FROM users WHERE user_id = :id";
-    $statement = $conn->prepare($query);
-    $statement->execute([':id' => $_SESSION['user_id']]);
-    $current_user = $statement->fetch(PDO::FETCH_ASSOC)['username'];
-}
-
 // Verbind met database
 try {
-    $connection = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
+    $conn = new PDO("mysql:host=webabb2;dbname=reizen;charset=utf8mb4", "root", "rootpassword", [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 } catch (PDOException $e) {
     die("Databaseverbinding mislukt: " . $e->getMessage());
 }
 
-// Login-verwerking
+// Login-verwerking voor gebruikers en admins
 if (isset($_POST["Registreren-Knop"])) {
-    $sql = "SELECT user_id, username, password FROM users WHERE username = :username";
-    $statement = $connection->prepare($sql);
-    $statement->bindParam(":username", $_POST['username']);
-    $statement->execute();
-    $gebruiker = $statement->fetch();
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    if ($gebruiker && password_verify($_POST['password'], $gebruiker['password'])) {
-        $_SESSION["Gebruiker"] = true;
+    // Query voor gebruikers
+    $query_users = "SELECT user_id, username, password FROM users WHERE username = :username";
+    $statement_users = $conn->prepare($query_users);
+    $statement_users->execute([':username' => $username]);
+    $gebruiker = $statement_users->fetch();
+
+    // Query voor admins
+    $query_admins = "SELECT admin_id, username, password FROM admins WHERE username = :username";
+    $statement_admins = $conn->prepare($query_admins);
+    $statement_admins->execute([':username' => $username]);
+    $admin = $statement_admins->fetch();
+
+    if ($gebruiker && password_verify($password, $gebruiker['password'])) {
+        $_SESSION['Gebruiker'] = true;
         $_SESSION['user_id'] = $gebruiker['user_id'];
         $_SESSION['username'] = $gebruiker['username'];
         header("Location: Account.php");
         exit;
+    } elseif ($admin && password_verify($password, $admin['password'])) {
+        $_SESSION['Admin'] = true;
+        $_SESSION['admin_id'] = $admin['admin_id'];
+        $_SESSION['username'] = $admin['username'];
+        header("Location: backend/admin/admin.php");
+        exit;
     } else {
-        // Optioneel: foutmelding
         echo "<script>alert('Onjuiste gebruikersnaam of wachtwoord');</script>";
     }
 }
@@ -78,16 +82,17 @@ if (isset($_POST["Registreren-Knop"])) {
                         <h1 class="grijsText">Welkom terug</h1>
                     </div>
 
-                <form action="login.php" method="post">
-                    <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
-                    <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
-                    <button class="filter-knop" name="Registreren-Knop" type="submit">
-                        <h2 class="Witte-Text">Login</h2>
-                    </button>
-                    <h4 class="grijsText">Nog geen account?&nbsp;<a class="blauwText" href="registreren.php">Klik hier</a></h4>
-                    <a class="blauwText" href="Reset.php">Wachtwoord of Naam vergeten?</a>
-                </form>
-            </div>
+                    <form action="login.php" method="post">
+                        <input class="loginInputNaam" name="username" placeholder="Naam" type="text">
+                        <input class="loginInputWachtwoord" name="password" placeholder="Wachtwoord" type="password">
+                        <button class="filter-knop" name="Registreren-Knop" type="submit">
+                            <h2 class="Witte-Text">Login</h2>
+                        </button>
+                        <h4 class="grijsText">Nog geen account?&nbsp;<a class="blauwText" href="registreren.php">Klik
+                                hier</a></h4>
+                        <a class="blauwText" href="Reset.php">Wachtwoord of Naam vergeten?</a>
+                    </form>
+                </div>
         </main>
         <footer>
         </footer>

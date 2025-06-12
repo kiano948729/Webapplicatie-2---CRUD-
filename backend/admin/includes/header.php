@@ -7,7 +7,8 @@
         <nav class="admin-nav">
             <a href="../admin.php" class="active">Dashboard</a>
             <a href="../../vakanties.php">vakanties</a>
-            <a href="../../logout.php" class="logout-btn">Uitloggen</a>
+            <a href="create.php">nieuwe admin</a>
+            <a href="../logout.php" class="logout-btn">Uitloggen</a>
         </nav>
     </div>
 </header>
