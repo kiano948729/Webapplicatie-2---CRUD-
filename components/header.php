@@ -28,10 +28,10 @@ if (isset($_SESSION['username'])) {
             <?php if ($current_user): ?>
                 <span>Welkom, <?php echo htmlspecialchars($current_user); ?></span>
                 <a href="../backend/logout.php">Uitloggen</a>
+                <a href="../Account.php">Account gegevens</a>
             <?php else: ?>
                 <a href="../login.php">Inloggen</a>
                 <a href="../registreren.php">Registreren</a>
-                <a href="../backend/guest.php">Gast</a>
             <?php endif; ?>
         </div>
     </div>
