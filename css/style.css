@@ -1253,3 +1253,8 @@ label {
     font-size: 0.9rem;
     color: var(--text-light);
 }
+.side-line{
+    color: var(--text-light);
+    width: 100%;
+    height: 1px;
+}

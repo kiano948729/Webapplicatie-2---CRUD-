@@ -1,8 +1,8 @@
 <?php
-if (empty($_SESSION['is_admin'])) {
-     header("Location: ../../vakanties.php");
-     exit;
-}
+// if (empty($_SESSION['is_admin'])) {
+//      header("Location: ../../vakanties.php");
+//      exit;
+// }
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

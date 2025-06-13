@@ -1,7 +1,7 @@
 console.log("jsK.js is geladen ✅");
 document.addEventListener("DOMContentLoaded", function () { 
     koppelShowMoreKnoppen();
-    const navButtons = document.querySelectorAll(".nav-btn");
+    const navButtons = document.querySelectorAll(".nav-btn, .sub-nav-btn");
     const contentSections = document.querySelectorAll(".content-section");
     const form = document.getElementById('zoekForm');
     const resultsDiv = document.getElementById('vakantieResultaten');
