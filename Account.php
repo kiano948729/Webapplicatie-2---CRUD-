@@ -66,10 +66,14 @@ if (isset($_SESSION['user_id'])) {
     <div class="persoonlijkeInformatieRij">
         <div class="topRijInfo">
             <h1 class="informatieTitel">Persoonlijke Informatie</h1>
-            <button class="filter-knop-account" name="Registreren-Knop" type="submit">
-                <h2 class="Witte-Text">Bewerk</h2>
-                <i id="Icon" class="fa-solid fa-pen-to-square"></i>
-            </button>
+            <a href="VeranderGegevens.php">
+                <button class="filter-knop-account" name="Registreren-Knop" type="submit">
+                    <h2 class="Witte-Text">Bewerk</h2>
+                    <i id="Icon" class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </a>
+
+
         </div>
         <div class="tweedeRijInfo">
             <div class="informatieFrame">
