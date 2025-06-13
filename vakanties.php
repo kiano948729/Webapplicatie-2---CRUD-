@@ -119,6 +119,7 @@ if ($user_id) {
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="jsK.js" defer></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
@@ -126,6 +127,7 @@ if ($user_id) {
 </head>
 
 <body class="vakantie-body">
+
     <header>
 
     </header>
@@ -154,6 +156,9 @@ if ($user_id) {
                         <a href="contact.php"><i class="fa-solid fa-square-envelope"></i>Contact</a>
                         <a href="privacy.php"><i class="fa-solid fa-fingerprint"></i>privacy</a>
                     </div>
+                    <hr class="side-line">
+                    <h1>favoriet</h1>
+                        <button class="sub-nav-btn" data-target="myFavorite">test</button>
                 </aside>
             </div>
             <!-- Content -->
@@ -161,16 +166,18 @@ if ($user_id) {
                 <div class="content-header-navigatie">
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
+                        <button type="button"
+                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>  
                         <?php if (!empty($_SESSION['is_admin'])): ?>
-                            <button type="button"
-                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
-
+                            
                         <?php endif; ?>
-                        <?php if ($current_user): ?>
-                            <small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small>
-                        <?php else: ?>
+                        <?php if (empty($current_user)): ?>
                             <small class="logged-in-user" style="color: var(--text-light);">Niet ingelogd</small>
+                        <?php else: ?>
+                            <small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small>
                         <?php endif; ?>
+
+
                     </div>
                     <div class="filter-balk">
                         <div class="filter-container">
@@ -192,10 +199,10 @@ if ($user_id) {
                             <?php unset($_SESSION['review_submitted']); ?>
                         <?php endif; ?>
                         <div class="filter-rechts">
-                            <select>
-                                <option>Sorteer op prijs</option>
-                                <option>Sorteer op prijs (laag-hoog)</option>
-                                <option>Sorteer op prijs (hoog-laag)</option>
+                            <select id="sortSelect">
+                                <option value="">Standaard</option>
+                                <option value="low_to_high">Sorteer op prijs (laag-hoog)</option>
+                                <option value="high_to_low">Sorteer op prijs (hoog-laag)</option>
                             </select>
                         </div>
                     </div>
@@ -450,12 +457,21 @@ if ($user_id) {
                         </section>
                     </div>
                 </div>
+                <div id="myFavorite" class="content-section" style="display: none;">
+                    <h1>adsfasdfads</h1>
+                </div>
             </main>
         </div>
     </div>
     <footer>
 
     </footer>
+    <script>
+        document.getElementById('sortSelect').addEventListener('change', function () {
+            const selectedSort = this.value;
+            // Ga naar dezelfde pagina met de sort-parameter
+            window.location.href = window.location.pathname + '?sort=' + selectedSort;
+        });
+    </script>
 </body>
-
 </html>
