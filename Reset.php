@@ -24,7 +24,7 @@ if (isset($_POST["Registreren-Knop"])) {
         $_SESSION["Gebruiker"] = true;
         $_SESSION['user_id'] = $Bewerker['user_id'];
         $_SESSION['username'] = $Bewerker['username'];
-        header("Location: Account.php");
+        header("Location: VeranderGegevens.php");
         exit;
     } else {
         // Optioneel: foutmelding
