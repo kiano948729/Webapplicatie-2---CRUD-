@@ -39,11 +39,34 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <div class="Afbeelding-Berg">
         <header>
             <?php require_once("components/header.php") ?>
         </header>
         <main class="indexMain">
+            <div class="afbeeldingIndexBerg">
+                <div class="indexTextDiv">
+                    <div class="blauweOnderkant">
+                        <h1 class="boldWitteText">Ontdek de mooiste backpack vakanties</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="indexSplitDiv">
+                <div class="indexLinkerDiv">
+                    <h1 class="Titel-Zwarte-Text">Boek vakanties makkelijker met backpack & go</h1>
+                </div>
+                <div class="indexRechterDiv">
+                    <h2 class="normaalText">Welkom bij backpack & go, hier kan u op een makkelijke manier leuke backpacking vakanties boeken</h2>
+                    <a href="overOns.php">
+                        <button class="filter-knop-account">
+                            <h2 class="Witte-Text">Lees meer</h2>
+                            <i id="Icon" class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="VakantieBlokMargin">
+                <?php require_once("components/vakanties-blok.php") ?>
+            </div>
             <div>
                 <div class="mini-dashboard">
                     <div class="dash-card">
@@ -61,14 +84,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
 
             </div>
-            <div class="indexTitelRij">
-                <h1 class="Witte-Text">Welkom bij backpack & go</h1>
-                <h2 class="Witte-Text">De wereld ligt aan je voeten.</h2>
-            </div>
             <div class="index-info">
-                <div class="VakantieBlokMargin">
-                    <?php require_once("components/vakanties-blok.php") ?>
-                </div>
                 <section class="populaire-themas">
                     <h2>Populaire Thema's</h2>
                     <div class="thema-grid">
@@ -94,5 +110,4 @@ if (isset($_SESSION['user_id'])) {
         <footer>
 
         </footer>
-    </div>
 </body>
