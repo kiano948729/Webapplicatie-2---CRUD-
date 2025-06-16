@@ -270,6 +270,10 @@ a {
     flex-direction: column;
     background-color: #66a9f0;
 }
+.logoCompass {
+    height: 90px;
+    display: flex;
+}
 .normaalText {
     font-weight: normal;
 }
