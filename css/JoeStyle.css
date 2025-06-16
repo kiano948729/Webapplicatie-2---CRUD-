@@ -651,3 +651,85 @@ input:focus {
     justify-self: center;
     margin-top: 60px;
 }
+@media screen and (max-width: 480px) {
+    .accountRij,
+    .persoonlijkeInformatieRij,
+    .persoonlijkeInformatieRijGegevens,
+    .onzichtbareFrame,
+    .onzichtbareFrameRegistreren,
+    .loginFrame,
+    .contactFrame,
+    .loginBewerkFrame,
+    .loginResetFrame,
+    .registrerenFrame,
+    .loginFrameRedirect {
+        width: 90% !important;
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+        flex-direction: column !important;
+        height: auto !important;
+    }
+
+    .accountLogoFrame {
+        margin: 20px auto;
+    }
+
+    .centerText,
+    .informatieFrame,
+    .textColumnDiv,
+    .titelCenter,
+    .boldWitteText {
+        width: 90% !important;
+        margin-left: 5% !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .afbeeldingDivLinks {
+        width: 90% !important;
+        margin: 0 auto !important;
+    }
+
+    .indexSplitDiv,
+    .splitDivRij,
+    .splitDivRijTwee {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 20px !important;
+    }
+
+    .loginInputNaam,
+    .loginInputWachtwoord,
+    .contactInputNaam,
+    .contactInputBericht,
+    .loginKnop,
+    .filter-knop,
+    .filter-knop-account {
+        width: 90% !important;
+        font-size: 16px !important;
+    }
+
+    .informatieTitel {
+        margin-left: 5%;
+    }
+
+    .indexTitelRij {
+        height: auto;
+        padding: 20px;
+    }
+
+    .logoCompass {
+        height: 60px;
+    }
+
+    .boldWitteText {
+        font-size: 18px !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .textBovenInput,
+    .loginTextFrame {
+        margin-left: 20px !important;
+    }
+}
