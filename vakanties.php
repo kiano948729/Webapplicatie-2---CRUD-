@@ -8,7 +8,6 @@ session_start();
 require 'backend/databaseConnect.php';
 require 'backend/conn.php';
 include 'backend/fetch_bestemmingen.php';
-include 'backend/fetch_deals.php';
 include 'backend/fetch_reviews.php';
 // Haal alle recensies per accommodatie op via INNER JOIN
 $reviews_per_accommodatie = [];
@@ -158,7 +157,7 @@ if ($user_id) {
                     </div>
                     <hr class="side-line">
                     <h1>favoriet</h1>
-                        <button class="sub-nav-btn" data-target="myFavorite">test</button>
+                    <button class="sub-nav-btn" data-target="myFavorite">test</button>
                 </aside>
             </div>
             <!-- Content -->
@@ -167,9 +166,9 @@ if ($user_id) {
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
                         <button type="button"
-                                onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>  
+                            onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
-                            
+
                         <?php endif; ?>
                         <?php if (empty($current_user)): ?>
                             <small class="logged-in-user" style="color: var(--text-light);">Niet ingelogd</small>
@@ -323,76 +322,73 @@ if ($user_id) {
                     <p><i class="fas fa-search-location"></i> Zoek jouw perfecte verblijf</p>
                     <form id="zoekForm" method="get">
                         <div class="input-rij">
+                            <!-- Locatie -->
                             <div class="invoer-blok">
+                                <input type="hidden" name="type" value="accommodation">
                                 <label for="locatie"><i class="fas fa-map-marker-alt"></i> Locatie</label>
-                                <input type="text" id="locatie" name="locatie" placeholder="Type the destination">
+                                <input type="text" id="locatie" name="locatie"
+                                    placeholder="Bijv. Amsterdam, Parijs, Rome">
                             </div>
 
+                            <!-- Check-in datum -->
                             <div class="invoer-blok">
                                 <label for="check-in"><i class="fas fa-calendar-check"></i> Check-in</label>
                                 <input type="date" id="check-in" name="check-in">
                             </div>
 
+                            <!-- Check-out datum -->
                             <div class="invoer-blok">
                                 <label for="check-out"><i class="fas fa-calendar-times"></i> Check-out</label>
                                 <input type="date" id="check-out" name="check-out">
                             </div>
                         </div>
 
+                        <!-- Accommodatie type filter -->
                         <div class="filters">
-                            <input type="radio" id="filter-huis" name="filter" value="house">
-                            <label for="filter-huis"><i class="fas fa-home"></i> House</label>
+                            <h4>Type verblijf</h4>
+                            <input type="radio" id="filter-huis" name="filter" value="huis">
+                            <label for="filter-huis"><i class="fas fa-home"></i> Huis</label>
 
                             <input type="radio" id="filter-hotel" name="filter" value="hotel">
                             <label for="filter-hotel"><i class="fas fa-hotel"></i> Hotel</label>
 
-                            <input type="radio" id="filter-residentieel" name="filter" value="residential">
-                            <label for="filter-residentieel"><i class="fas fa-city"></i> Residential</label>
+                            <input type="radio" id="filter-hostel" name="filter" value="hostel">
+                            <label for="filter-residentieel"><i class="fas fa-city"></i> hostel</label>
 
-                            <input type="radio" id="filter-appartement" name="filter" value="apartment">
-                            <label for="filter-appartement"><i class="fas fa-building"></i> Apartment</label>
+                            <input type="radio" id="filter-camping" name="filter" value="camping">
+                            <label for="filter-appartement"><i class="fas fa-building"></i> Camping</label>
+
+                            <input type="radio" id="filter-anders" name="filter" value="anders">
+                            <label for="filter-appartement"><i class="fas fa-building"></i> Anders</label>
                         </div>
 
+                        <!-- Prijsbereik sliders -->
+                        <div class="price-range">
+                            <label for="minPriceSlider">Minimale prijs: <span id="minPriceRangeValue">€0</span></label>
+                            <input type="range" min="0" max="1000" step="50" id="minPriceSlider" name="min_price"
+                                value="0">
+
+                            <label for="maxPriceSlider">Maximale prijs: <span
+                                    id="maxPriceRangeValue">€1000</span></label>
+                            <input type="range" min="0" max="1000" step="50" id="maxPriceSlider" name="max_price"
+                                value="1000">
+                        </div>
+
+                        <!-- Zoekknop -->
                         <div class="zoek-knop">
                             <button type="submit"><i class="fas fa-search"></i> Zoek Verblijven</button>
+                            <button type="button" id="resetFiltersBtn" onclick="resetFilters()"class="reset-filter-btn">Reset Filters</button>
                         </div>
                     </form>
 
+                    <!-- Zoekresultaten worden hier weergegeven -->
                     <div id="vakantieResultaten"></div>
                 </div>
 
 
                 <!-- Trending -->
                 <div id="trendingContent" class="content-section" style="display: none;">
-                    <div class="deals-grid">
-                        <?php foreach ($deals as $deal): ?>
-                            <div class="vakantie-kaart">
-                                <img src="<?= htmlspecialchars($deal['photo_url']) ?>"
-                                    alt="Foto van <?= htmlspecialchars($deal['destination']) ?>">
-                                <h3><?= htmlspecialchars($deal['destination']) ?></h3>
-                                <p><?= htmlspecialchars($deal['description']) ?></p>
-                                <p><strong>€ <?= htmlspecialchars($deal['price']) ?></strong></p>
 
-                                <!-- Boek-knop -->
-                                <?php if (isset($_SESSION['user_id'])): ?>
-                                    <form action="backend/boek_deal.php" method="POST">
-                                        <input type="hidden" name="deal_id" value="<?= $deal['deal_id'] ?>">
-                                        <input type="hidden" name="start_date" value="<?= date('Y-m-d') ?>">
-                                        <input type="hidden" name="end_date" value="<?= date('Y-m-d', strtotime('+7 days')) ?>">
-
-                                        <label for="aantal_personen_<?= $deal['deal_id'] ?>">Aantal personen:</label>
-                                        <input type="number" id="aantal_personen_<?= $deal['deal_id'] ?>" name="aantal_personen"
-                                            min="1" value="1" required>
-
-                                        <button type="submit" class="book-btn">Boek deze deal</button>
-                                    </form>
-
-                                <?php else: ?>
-                                    <p><a href="login.php">Log in</a> om te boeken</p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
                 </div>
                 <!-- Mijn vakanties -->
                 <div id="myVacationsContent" class="content-section" style="display: none;">
@@ -474,4 +470,5 @@ if ($user_id) {
         });
     </script>
 </body>
+
 </html>

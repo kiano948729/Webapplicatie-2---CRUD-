@@ -32,9 +32,7 @@ if (!isset($conn)) {
     <main class="dashboard-container">
         <div class="tabs">
             <button class="tab-button active" data-tab="users">Gebruikers</button>
-            <button class="tab-button" data-tab="deals">Vakantie Deals</button>
             <button class="tab-button" data-tab="accommodations">Accommodaties</button>
-            <button class="tab-button" data-tab="boeking_deal">Boekingen deals</button>
             <button class="tab-button" data-tab="boeking_accomodatie">Boekingen accommodaties</button>
             <button class="tab-button" data-tab="addomodatie_review">review accommodaties</button>
             <button class="tab-button" data-tab="Contact_bericht">Contact berichten</button>
@@ -57,14 +55,10 @@ if (!isset($conn)) {
                 <?php include 'accomodaties/list.php'; ?>
             </section>
 
-            <section id="boeking_deal-section" class="tab-content">
-                <?php include 'boekingen_deals/list.php'; ?>
-            </section>
-
             <section id="boeking_accomodatie-section" class="tab-content">
                 <?php include 'boekingen_accomodaties/list.php'; ?>
             </section>
-
+            
             <section id="addomodatie_review-section" class="tab-content">
                 <?php include 'reviews/list.php'; ?>
             </section>
