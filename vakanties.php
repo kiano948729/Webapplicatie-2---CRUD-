@@ -36,8 +36,6 @@ foreach ($all_reviews as $review) {
     }
     $reviews_per_accommodatie[$accommodationId][] = $review;
 }
-
-
 if (isset($_SESSION['user_id'])) {
     // Haal gebruikersnaam op
     $query = "SELECT username FROM users WHERE user_id = :id";
@@ -262,6 +260,10 @@ if ($user_id) {
                                     <p>Locatie: <?= htmlspecialchars($accommodation['location']) ?></p>
                                     <p>Prijs: € <?= htmlspecialchars($accommodation['price']) ?></p>
                                     <p><?= htmlspecialchars($accommodation['description']) ?></p>
+                                    <?php if (!empty($accommodation['large_description'])): ?>
+                                        <p><strong>Informatie:</strong></p>
+                                        <p><?= nl2br(htmlspecialchars($accommodation['large_description'])) ?></p>
+                                    <?php endif; ?>
                                     <form method="POST" action="backend/submit_review.php">
                                         <input type="hidden" name="accommodation_id"
                                             value="<?= htmlspecialchars($accommodation['accommodation_id']); ?>">
@@ -377,7 +379,8 @@ if ($user_id) {
                         <!-- Zoekknop -->
                         <div class="zoek-knop">
                             <button type="submit"><i class="fas fa-search"></i> Zoek Verblijven</button>
-                            <button type="button" id="resetFiltersBtn" onclick="resetFilters()"class="reset-filter-btn">Reset Filters</button>
+                            <button type="button" id="resetFiltersBtn" onclick="resetFilters()"
+                                class="reset-filter-btn">Reset Filters</button>
                         </div>
                     </form>
 

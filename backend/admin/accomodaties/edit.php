@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name = :name, 
             type = :type, 
             location = :location, 
-            description = :description, 
+            description = :description,
+            large_description = :large_description,  
             photo_url = :photo_url, 
             price = :price 
         WHERE accommodation_id = :id
@@ -60,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':type' => $_POST['type'],
         ':location' => $_POST['location'],
         ':description' => $_POST['description'],
+        ':large_description' => $_POST['large_description'], 
         ':photo_url' => $new_photo_url,
         ':price' => $_POST['price'],
         ':id' => $id
@@ -100,6 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>Beschrijving:</label><br>
         <textarea name="description"><?= htmlspecialchars($accommodation['description']) ?></textarea><br><br>
+
+        <label>Grote beschrijving (large_description):</label><br>
+        <textarea name="large_description"><?= htmlspecialchars($accommodation['large_description']) ?></textarea><br><br>
 
         <label>Huidige foto:</label><br>
         <?php if (!empty($accommodation['photo_url'])): ?>
