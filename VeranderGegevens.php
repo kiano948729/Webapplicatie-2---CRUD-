@@ -88,10 +88,12 @@ if (isset($_POST['Verstuur'])) {
                         <i id="Icon" class="fa-solid fa-left-long"></i>
                     </button>
                 </a>
-                <button class="filter-knop-account" name="Verstuur" type="submit">
-                    <h2 class="Witte-Text">Bewerk</h2>
-                    <i id="Icon" class="fa-solid fa-check"></i>
-                </button>
+                <a>
+                    <button class="filter-knop-account" name="Verstuur" type="submit">
+                        <h2 class="Witte-Text">Bewerk</h2>
+                        <i id="Icon" class="fa-solid fa-check"></i>
+                    </button>
+                </a>
             </div>
 
             <div class="tweedeRijInfo">
