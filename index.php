@@ -29,6 +29,7 @@ if (isset($_SESSION['user_id'])) {
     <title>Vakanties Boeken | Naam</title>
     <link rel="icon" href="../img/CompassLogo.png" type="Images/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/JoeStyle.css">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,11 +40,10 @@ if (isset($_SESSION['user_id'])) {
 
 <body>
     <div class="Afbeelding-Berg">
-
         <header>
             <?php require_once("components/header.php") ?>
         </header>
-        <main>
+        <main class="indexMain">
             <div>
                 <div class="mini-dashboard">
                     <div class="dash-card">
@@ -60,6 +60,10 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                 </div>
 
+            </div>
+            <div class="indexTitelRij">
+                <h1 class="Witte-Text">Welkom bij backpack & go</h1>
+                <h2 class="Witte-Text">De wereld ligt aan je voeten.</h2>
             </div>
             <div class="index-info">
                 <div class="VakantieBlokMargin">

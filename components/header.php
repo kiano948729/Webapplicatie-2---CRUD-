@@ -15,7 +15,9 @@ if (isset($_SESSION['username'])) {
 <nav>
     <div class="index-nav">
         <div class="index-Frame-Logo">
-            <a href="../index.php">logo</a>
+            <a href="../index.php">
+                <img class="logoCompass" src="img/CompassLogo.png" alt="logo">
+            </a>
         </div>
         <div class="index-main-nav">
             <a href="../vakanties.php">Vakanties</a>
