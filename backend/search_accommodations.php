@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 require 'databaseConnect.php';
 
 $locatie = $_GET['locatie'] ?? '';
@@ -85,6 +85,9 @@ foreach ($results as $acc):
     echo "    <p>Locatie: " . htmlspecialchars($acc['location']) . "</p>";
     echo "    <p>Prijs: €" . htmlspecialchars($acc['price']) . "</p>";
     echo "    <p>" . htmlspecialchars($acc['description']) . "</p>";
+    echo "<div class='large-description'>";
+    echo nl2br(htmlspecialchars($acc['large_description']));
+    echo "</div>";
 
     // Recensieformulier
     echo "    <form method='POST' action='backend/submit_review.php'>";

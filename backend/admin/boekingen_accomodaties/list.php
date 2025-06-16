@@ -51,8 +51,8 @@ $accommodatieBoekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td>&euro; <?= number_format($boeking['total_price'], 2, ',', '.') ?></td>
                         <td class="action-links">
                             <a
-                                href="boekingen_accommodaties/edit.php?id=<?= $boeking['boeking_accommodatie_id'] ?>">Bewerken</a>
-                            <a href="boekingen_accommodaties/delete.php?id=<?= $boeking['boeking_accommodatie_id'] ?>"
+                                href="boekingen_accomodaties/edit.php?id=<?= $boeking['boeking_accommodatie_id'] ?>">Bewerken</a>
+                            <a href="boekingen_accomodaties/delete.php?id=<?= $boeking['boeking_accommodatie_id'] ?>"
                                 onclick="return confirm('Weet u zeker dat u deze boeking wilt verwijderen?')">Verwijderen</a>
                         </td>
                     </tr>

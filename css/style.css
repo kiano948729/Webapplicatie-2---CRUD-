@@ -1104,17 +1104,19 @@ label {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
+    
 }
 
 .expanded-content {
     background-color: white;
     width: 80%;
     max-width: 1700px;
-    height: 800px;
-    margin: auto;
+    height: 900px;
     padding: 20px;
-    position: relative;
-    top: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }

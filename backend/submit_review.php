@@ -18,8 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
 
     // Verander $pdo naar $conn als dat je verbindingsvariabele is
     $stmt = $conn->prepare("INSERT INTO accommodatie_reviews (user_id, accommodation_id, rating, comment) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$user_id, $accommodation_id, $rating, $comment]);
-    if ($stmt->execute([$user_id, $accommodation_id, $rating, $comment])) {
+    $success = $stmt->execute([$user_id, $accommodation_id, $rating, $comment]);
+
+    if ($success) {
         $_SESSION['review_submitted'] = "Je recensie is succesvol ingediend en wordt beoordeeld door de administrator.";
     } else {
         $_SESSION['review_submitted'] = "Er is een fout opgetreden bij het indienen van je recensie.";
