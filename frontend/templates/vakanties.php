@@ -109,13 +109,13 @@ if ($user_id) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>Menu</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/JoeStyle.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/JoeStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
-    <script src="jsK.js" defer></script>
+    <script src="../public/js/jsK.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -164,14 +164,13 @@ if ($user_id) {
                     <div class="content-header">
                         <h2><strong>Explore</strong> events</h2>
                         <button type="button"
-                            onclick="window.location.href='backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php if (!empty($_SESSION['is_admin'])): ?>
-
+                            onclick="window.location.href='../../backend/admin/admin.php'">Beheerderspaneel</button>
                         <?php endif; ?>
                         <?php if (empty($current_user)): ?>
                             <small class="logged-in-user" style="color: var(--text-light);">Niet ingelogd</small>
                         <?php else: ?>
-                            <small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small>
+                            <a href="Account.php"><small class="logged-in-user">Ingelogd als: <?= htmlspecialchars($current_user) ?></small></a>
                         <?php endif; ?>
 
 
@@ -224,7 +223,7 @@ if ($user_id) {
                                     <!-- In beide vakantie-kaart secties (homeContent & trendingContent) -->
                                     <div class="boeking-form">
                                         <h4>Boek nu</h4>
-                                        <form action="backend/boek_accommodatie.php" method="POST">
+                                        <form action="../../backend/controllers/boek_accommodatie.php" method="POST">
                                             <input type="hidden" name="accommodation_id"
                                                 value="<?= $accommodation['accommodation_id'] ?>">
                                             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
@@ -264,7 +263,7 @@ if ($user_id) {
                                         <p><strong>Informatie:</strong></p>
                                         <p><?= nl2br(htmlspecialchars($accommodation['large_description'])) ?></p>
                                     <?php endif; ?>
-                                    <form method="POST" action="backend/submit_review.php">
+                                    <form method="POST" action="../../backend/controllers/submit_review.php">
                                         <input type="hidden" name="accommodation_id"
                                             value="<?= htmlspecialchars($accommodation['accommodation_id']); ?>">
                                         <label for="rating">Beoordeling (1-5):</label>

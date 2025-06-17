@@ -20,20 +20,20 @@ if (isset($_SESSION['username'])) {
             </a>
         </div>
         <div class="index-main-nav">
-            <a href="../vakanties.php">Vakanties</a>
+            <a href="../../templates/vakanties.php">Vakanties</a>
             <a>●</a>
-            <a href="../overOns.php">Over ons</a>
+            <a href="../../templates/overOns.php">Over ons</a>
             <a>●</a>
             <a href="../contact.php">Contact</a>
         </div>
         <div class="index-Frame-Login">
             <?php if ($current_user): ?>
                 <span>Welkom, <?php echo htmlspecialchars($current_user); ?></span>
-                <a href="../backend/logout.php">Uitloggen</a>
-                <a href="../Account.php">Account gegevens</a>
+                <a href="../../../backend/controllers/logout.php">Uitloggen</a>
+                <a href="../../templates/Account.php">Account gegevens</a>
             <?php else: ?>
-                <a href="../login.php">Inloggen</a>
-                <a href="../registreren.php">Registreren</a>
+                <a href="../../templates/login.php">Inloggen</a>
+                <a href="../../templates/registreren.php">Registreren</a>
             <?php endif; ?>
         </div>
     </div>

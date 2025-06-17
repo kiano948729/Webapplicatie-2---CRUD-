@@ -42,8 +42,8 @@ if (isset($_POST["Registreren-Knop"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>Vakanties Boeken | Naam</title>
-    <link rel="stylesheet" href="css/JoeStyle.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../public/css/JoeStyle.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <link rel="icon" href="../img/CompassLogo.png" type="Images/png">
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
@@ -55,7 +55,7 @@ if (isset($_POST["Registreren-Knop"])) {
 <div class="Afbeelding-Achtergrond-Login">
 
     <header>
-        <?php require_once("components/header.php")?>
+        <?php require_once("components/header.php") ?>
     </header>
     <main>
         <div class="loginFrameRij">

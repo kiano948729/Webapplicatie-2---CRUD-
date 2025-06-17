@@ -62,8 +62,8 @@ if (isset($_POST['Verstuur'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google" content="notranslate" />
     <title>Account | <?php echo htmlspecialchars($current_user ?? 'Naam'); ?></title>
-    <link rel="stylesheet" href="css/JoeStyle.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../public/css/JoeStyle.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
     <link rel="icon" href="../img/CompassLogo.png" type="image/png" />
     <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
