@@ -9,6 +9,8 @@ require_once __DIR__ . '/../../config/init.php';
 
 // Gebruik nu direct $conn, $_SESSION, fetch_bestemmingen, enz.
 include BACKEND_PATH . '/fetch/fetch_bestemmingen.php';
+include BACKEND_PATH . '/fetch/fetch_boeking_accomodatie.php';
+
 // Haal alle recensies per accommodatie op via INNER JOIN
 $reviews_per_accommodatie = [];
 
@@ -408,8 +410,8 @@ if ($user_id) {
                             <div class="booking-grid">
                                 <?php foreach ($user_bookings as $booking): ?>
                                     <div class="booking-card">
-                                        <img src="/backend/img/<?= basename($accommodation['photo_url']) ?>"
-                                             alt="<?= htmlspecialchars($accommodation['name']) ?>">
+                                        <img src="<?= htmlspecialchars($booking['photo_url']) ?>"
+                                             alt="<?= htmlspecialchars($booking['accommodation_name']) ?>"
                                         <div class="booking-info">
                                             <h4><?= htmlspecialchars($booking['accommodation_name']) ?></h4>
                                             <p><strong>Datum:</strong>
