@@ -1,6 +1,7 @@
 <?php
+global $conn;
 session_start();
-require 'databaseConnect.php';
+require_once __DIR__ . '/../../config/init.php';
 
 $locatie = $_GET['locatie'] ?? '';
 $type = $_GET['filter'] ?? '';
@@ -56,7 +57,7 @@ foreach ($results as $acc):
         // Boekingsformulier
         echo "<div class='boeking-form'>
                 <h4>Boek nu</h4>
-                <form action='backend/boek_accommodatie.php' method='POST'>
+                <form action='../../backend/controllers/boek_accommodatie.php' method='POST'>
                     <input type='hidden' name='accommodation_id' value='" . $acc['accommodation_id'] . "'>
                     <input type='hidden' name='user_id' value='" . $_SESSION['user_id'] . "'>
 
@@ -73,7 +74,7 @@ foreach ($results as $acc):
                 </form>
               </div>";
     else:
-        echo "<p><a href='login.php'>Log in</a> om te boeken</p>";
+        echo "<p><a href='<? TEMPLATES_URL ?>/login.php'>Log in</a> om te boeken</p>";
     endif;
 
     // Meer-info overlay

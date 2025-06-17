@@ -1,6 +1,13 @@
+<?php
+// Zorg dat init.php slechts 1x wordt geladen
+if (!defined('ROOT_PATH')) {
+    require_once __DIR__ . '/../../../config/init.php';
+}
+?>
+
 <div class="vakanties-main-blok">
     <h2>Find the best place</h2>
-    <form action="backend/search.php" method="get">
+    <form action="<?= BACKEND_URL ?>/search.php" method="get">
         <div class="input-rij">
             <div class="invoer-blok">
                 <label for="locatie">Location</label>
@@ -36,4 +43,3 @@
         </div>
     </form>
 </div>
-

@@ -1,15 +1,11 @@
 <?php
-require '../conn.php';
-
-if (!isset($conn)) {
-    die("Databaseverbinding mislukt!");
-}
+require_once __DIR__ . '../../../../config/init.php';
 
 if (isset($_GET['delete_acco'])) {
     $id = (int) $_GET['delete_acco'];
     $stmt = $conn->prepare("DELETE FROM accommodaties WHERE accommodation_id = :id");
     $stmt->execute([':id' => $id]);
-    header("Location: ../index.php");
+    header("Location: ../admin.php");
     exit;
 }
 

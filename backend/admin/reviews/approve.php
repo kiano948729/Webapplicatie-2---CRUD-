@@ -1,5 +1,5 @@
 <?php
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 $review_id = $_GET['id'] ?? null;
 
 if ($review_id) {

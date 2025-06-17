@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 // Database verbinding
-require '../conn.php';
+require_once __DIR__ . '/../../config/init.php';
 
 if (!isset($conn)) {
     die("Databaseverbinding niet geladen.");

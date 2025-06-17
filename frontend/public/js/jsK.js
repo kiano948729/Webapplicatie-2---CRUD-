@@ -34,13 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const formData = new FormData(form);
             const query = new URLSearchParams(formData).toString();
-            const searchType = formData.get("type"); // Lees het 'type' veld
+            const searchType = formData.get("type") || "accommodation";
             const endpoint = searchType === "accommodation"
-                ? "backend/search_accommodations.php"
-                : "backend/search.php"; // Standaard naar deals
+                ? "../../backend/controllers/search_accommodations.php"
+                : "../../backend/controllers/search.php";
 
             fetch(`${endpoint}?${query}`)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) throw new Error("Netwerkreactie was geen succes.");
+                    return response.text();
+                })
                 .then(html => {
                     resultsDiv.innerHTML = html;
                     koppelShowMoreKnoppen(); // Herkoppel knoppen na nieuwe inhoud
@@ -52,11 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Minimum prijs slider
+    // Minimum en maximum prijs slider
     const minPriceSlider = document.getElementById("minPriceSlider");
     const minPriceLabel = document.getElementById("minPriceRangeValue");
-
-    // Maximum prijs slider
     const maxPriceSlider = document.getElementById("maxPriceSlider");
     const maxPriceLabel = document.getElementById("maxPriceRangeValue");
 
@@ -71,17 +72,41 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update labels tijdens slepen
     if (minPriceSlider && minPriceLabel) {
         minPriceSlider.addEventListener("input", function () {
+            if (parseInt(this.value) > parseInt(maxPriceSlider.value)) {
+                this.value = maxPriceSlider.value;
+            }
             minPriceLabel.textContent = "€" + this.value;
         });
     }
 
     if (maxPriceSlider && maxPriceLabel) {
         maxPriceSlider.addEventListener("input", function () {
+            if (parseInt(this.value) < parseInt(minPriceSlider.value)) {
+                this.value = minPriceSlider.value;
+            }
             maxPriceLabel.textContent = "€" + this.value;
+        });
+    }
+
+    // Sorteerfunctionaliteit
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+            const selectedSort = this.value;
+            const currentUrl = new URL(window.location.href);
+
+            if (selectedSort) {
+                currentUrl.searchParams.set('sort', selectedSort);
+            } else {
+                currentUrl.searchParams.delete('sort');
+            }
+
+            window.location.href = currentUrl.toString();
         });
     }
 });
 
+// Functie om 'Meer info' knoppen te koppelen
 function koppelShowMoreKnoppen() {
     document.querySelectorAll('.show-more-btn').forEach(button => {
         button.addEventListener('click', () => {
@@ -90,8 +115,11 @@ function koppelShowMoreKnoppen() {
 
             if (!overlay) {
                 // Overlay nog niet geladen, haal hem op via AJAX
-                fetch(`backend/ajax_get_accommodatie_overlay.php?id=${id}`)
-                    .then(response => response.text())
+                fetch(`../../backend/ajax_get_accommodatie_overlay.php?id=${id}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error("Overlay kon niet worden geladen.");
+                        return response.text();
+                    })
                     .then(html => {
                         document.body.insertAdjacentHTML('beforeend', html);
                         document.getElementById(`expanded-${id}`).style.display = 'block';
@@ -114,50 +142,42 @@ function closeExpandedInfo(id) {
         overlay.style.display = 'none';
     }
 }
-document.getElementById('sortSelect').addEventListener('change', function () {
-    const selectedSort = this.value;
-    const currentUrl = new URL(window.location.href);
 
-    // Update of voeg de sort-parameter toe
-    if (selectedSort) {
-        currentUrl.searchParams.set('sort', selectedSort);
-    } else {
-        currentUrl.searchParams.delete('sort');
-    }
-
-    // Herlaad de pagina met nieuwe parameter
-    window.location.href = currentUrl.toString();
-});
-minPriceSlider.addEventListener("input", function () {
-    if (parseInt(this.value) > parseInt(maxPriceSlider.value)) {
-        this.value = maxPriceSlider.value;
-    }
-    minPriceLabel.textContent = "€" + this.value;
-});
-
-maxPriceSlider.addEventListener("input", function () {
-    if (parseInt(this.value) < parseInt(minPriceSlider.value)) {
-        this.value = minPriceSlider.value;
-    }
-    maxPriceLabel.textContent = "€" + this.value;
-});
+// Reset filters functie
 function resetFilters() {
     const form = document.getElementById('zoekForm');
-    form.reset(); // Reset alle velden
+    const minPriceLabel = document.getElementById('minPriceRangeValue');
+    const maxPriceLabel = document.getElementById('maxPriceRangeValue');
+
+    if (form) {
+        form.reset(); // Reset alle velden
+    }
 
     // Update sliderlabels
-    document.getElementById('minPriceRangeValue').textContent = '€0';
-    document.getElementById('maxPriceRangeValue').textContent = '€1000';
+    if (minPriceLabel) minPriceLabel.textContent = '€0';
+    if (maxPriceLabel) maxPriceLabel.textContent = '€1000';
 
-    // Verstuur lege waarden
-    const formData = new FormData(form);
-    const query = new URLSearchParams(formData).toString();
+    // Standaardwaarden terugzetten
+    if (document.getElementById("minPriceSlider")) document.getElementById("minPriceSlider").value = 0;
+    if (document.getElementById("maxPriceSlider")) document.getElementById("maxPriceSlider").value = 1000;
 
-    fetch('backend/fetch_bestemmingen.php?' + query)
-        .then(response => response.text())
-        .then(html => {
-                console.log("HTML van zoekresultaat:", html);
-            document.getElementById('vakantieResultaten').innerHTML = html;
-            koppelShowMoreKnoppen();
-        });
+    // Laad standaardresultaten
+    if (form && resultsDiv) {
+        const formData = new FormData(form);
+        const query = new URLSearchParams(formData).toString();
+
+        fetch('../../backend/fetch_bestemmingen.php?' + query)
+            .then(response => {
+                if (!response.ok) throw new Error("Standaardresultaten kunnen niet worden geladen.");
+                return response.text();
+            })
+            .then(html => {
+                resultsDiv.innerHTML = html;
+                koppelShowMoreKnoppen();
+            })
+            .catch(error => {
+                console.error("Fout bij laden standaardresultaten:", error);
+                resultsDiv.innerHTML = '<p>Er ging iets fout bij het laden van de resultaten.</p>';
+            });
+    }
 }

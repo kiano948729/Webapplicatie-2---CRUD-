@@ -1104,7 +1104,7 @@ label {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
-    
+
 }
 
 .expanded-content {
@@ -1231,31 +1231,58 @@ label {
 
 .my-vacations-container {
     padding: var(--gap-lg);
+    width: 93%;
+    overflow-y: auto;
 }
-
+#myVacationsContent{
+    overflow-y: auto;
+}
 .my-vacations-container h2,
 .my-vacations-container h3 {
     color: var(--text-dark);
     margin-bottom: var(--gap-md);
 }
 
+/* === Mijn Boekingen Grid === */
 .booking-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
     gap: var(--gap-lg);
+    max-height: 600px;
+    overflow-y: auto;
+    padding: var(--gap-md);
+    border-radius: var(--radius);
+    background-color: #f8f9fa;
 }
 
-.booking-card {
-    background-color: #fff;
+/* Custom scrollbar (optioneel) */
+.booking-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.booking-grid::-webkit-scrollbar-track {
+    background: #e9ecef;
     border-radius: var(--radius);
-    box-shadow: 0 2px 8px var(--card-shadow);
+}
+.booking-grid::-webkit-scrollbar-thumb {
+    background: #adb5bd;
+    border-radius: var(--radius);
+}
+.booking-grid::-webkit-scrollbar-thumb:hover {
+    background: #868e96;
+}
+
+/* === Booking Card Stijl === */
+.booking-card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .booking-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px var(--card-shadow);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .booking-card img {
@@ -1278,6 +1305,53 @@ label {
     margin: var(--gap-sm) 0;
     font-size: 0.9rem;
     color: var(--text-light);
+}
+
+.booking-info a {
+    display: inline-block;
+    margin-top: var(--gap-sm);
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+.booking-info a:hover {
+    text-decoration: underline;
+}
+/* === Tablet View (768px) === */
+@media (max-width: 768px) {
+    .booking-grid {
+        max-height: 500px;
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+    }
+
+    .booking-card img {
+        height: 140px;
+    }
+
+    .booking-info h4 {
+        font-size: 1rem;
+    }
+}
+
+/* === Mobiele telefoon (tot 480px) === */
+@media (max-width: 480px) {
+    .booking-grid {
+        max-height: 400px;
+        padding: var(--gap-sm);
+    }
+
+    .booking-card img {
+        height: 120px;
+    }
+
+    .booking-info p {
+        font-size: 0.85rem;
+    }
+
+    .booking-info a {
+        font-size: 0.9rem;
+    }
 }
 .side-line{
     color: var(--text-light);

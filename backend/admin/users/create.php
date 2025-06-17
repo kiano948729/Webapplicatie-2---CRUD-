@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 // Als het formulier is ingediend
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 $id = $_GET['id'];
 $stmt = $conn->prepare("SELECT * FROM ContactBerichten WHERE Id = :id");

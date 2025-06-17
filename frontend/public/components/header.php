@@ -1,39 +1,40 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$current_page = basename($_SERVER['PHP_SELF']);
-
-$current_user = null;
-
-// Get username from session
-if (isset($_SESSION['username'])) {
-    $current_user = $_SESSION['username'];
+// Zorg dat init.php slechts 1x wordt geladen
+global $current_user;
+if (!defined('ROOT_PATH')) {
+    // We gaan uit van maximaal 3 niveaus naar boven naar 'config/init.php'
+    require_once __DIR__ . '/../../../../config/init.php';
 }
 ?>
 
+<!-- Navigatie -->
 <nav>
     <div class="index-nav">
+        <!-- Logo -->
         <div class="index-Frame-Logo">
-            <a href="../index.php">
-                <img class="logoCompass" src="img/CompassLogo.png" alt="logo">
+            <a href="<?= ROOT_URL ?>/index.php">
+                <img class="logoCompass" src="<?= IMG_URL ?>/CompassLogo.png" alt="Logo">
             </a>
         </div>
+
+        <!-- Hoofdnavigatie -->
         <div class="index-main-nav">
-            <a href="../../templates/vakanties.php">Vakanties</a>
+            <a href="<?= TEMPLATES_URL ?>/vakanties.php">Vakanties</a>
             <a>●</a>
-            <a href="../../templates/overOns.php">Over ons</a>
+            <a href="<?= TEMPLATES_URL ?>/overOns.php">Over ons</a>
             <a>●</a>
-            <a href="../contact.php">Contact</a>
+            <a href="<?= TEMPLATES_URL ?>/contact.php">Contact</a>
         </div>
+
+        <!-- Login / Account -->
         <div class="index-Frame-Login">
             <?php if ($current_user): ?>
-                <span>Welkom, <?php echo htmlspecialchars($current_user); ?></span>
-                <a href="../../../backend/controllers/logout.php">Uitloggen</a>
-                <a href="../../templates/Account.php">Account gegevens</a>
+                <span>Welkom, <?= htmlspecialchars($current_user) ?></span>
+                <a href="<?= CONTROLLERS_URL ?>/logout.php">Uitloggen</a>
+                <a href="<?= TEMPLATES_URL ?>/Account.php">Account gegevens</a>
             <?php else: ?>
-                <a href="../../templates/login.php">Inloggen</a>
-                <a href="../../templates/registreren.php">Registreren</a>
+                <a href="<?= TEMPLATES_URL ?>/login.php">Inloggen</a>
+                <a href="<?= TEMPLATES_URL ?>/registreren.php">Registreren</a>
             <?php endif; ?>
         </div>
     </div>

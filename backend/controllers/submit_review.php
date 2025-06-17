@@ -1,6 +1,7 @@
 <?php
+global $conn;
 session_start();
-include 'databaseConnect.php';
+require_once __DIR__ . '/../../config/init.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
