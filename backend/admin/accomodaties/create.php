@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Init foto_url als NULL voor het geval er geen foto geupload wordt

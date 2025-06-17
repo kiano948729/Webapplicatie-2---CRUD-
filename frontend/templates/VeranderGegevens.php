@@ -1,20 +1,16 @@
 <?php
-session_start();
-require_once 'backend/databaseConnect.php';
-global $conn;
+// Laad centrale configuratie
+require_once __DIR__ . '../../../config/init.php';
 
-if (!isset($_SESSION["Gebruiker"])) {
-    header("Location: Index.php");
+// Controleer login
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../../../index.php");
     exit();
 }
 
-$current_user = null;
-$registration_date = null;
-$user_id = null;
-$lastName = null;
-$email = null;
+// Haal gebruikersgegevens op
+$current_user = $lastName = $email = $registration_date = $user_id = null;
 
-// Fetch user info from session
 if (isset($_SESSION['user_id'])) {
     $query = "SELECT username, registration_date, user_id, email, lastName FROM users WHERE user_id = :id";
     $statement = $conn->prepare($query);
@@ -30,13 +26,13 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
-// Update logic
+// Update logica
 if (isset($_POST['Verstuur'])) {
     $query = "UPDATE users SET username = :username, email = :email, lastName = :lastName";
     $params = [
         ':username' => $_POST['username'],
-        ':email' => $_POST['email'],
-        ':lastName' => $_POST['lastName'],
+        ':email' => $_POST['email'] ?? '',
+        ':lastName' => $_POST['lastName'] ?? '',
         ':id' => $user_id
     ];
 
@@ -49,8 +45,8 @@ if (isset($_POST['Verstuur'])) {
     $stmt = $conn->prepare($query);
     $stmt->execute($params);
 
-    // Optional: refresh displayed user data
-    header("Location: VeranderGegevens.php"); // Prevent form resubmission
+    // Redirect om geüpdatete data te tonen
+    header("Location: VeranderGegevens.php");
     exit();
 }
 ?>
@@ -60,21 +56,16 @@ if (isset($_POST['Verstuur'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google" content="notranslate" />
-    <title>Account | <?php echo htmlspecialchars($current_user ?? 'Naam'); ?></title>
-    <link rel="stylesheet" href="../public/css/JoeStyle.css" />
-    <link rel="stylesheet" href="../public/css/style.css" />
-    <link rel="icon" href="../img/CompassLogo.png" type="image/png" />
-    <script src="https://kit.fontawesome.com/5321476408.js" crossorigin="anonymous"></script>
-    <script src="script.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+    <title>Account | <?= htmlspecialchars($current_user ?? 'Naam') ?></title>
+    <link rel="icon" href="<?= IMG_URL ?>/CompassLogo.png" type="image/png" />
+    <link rel="stylesheet" href="<?= CSS_URL ?>/JoeStyle.css" />
+    <link rel="stylesheet" href="<?= CSS_URL ?>/style.css" />
+    <script src="https://kit.fontawesome.com/5321476408.js"  crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 <header>
-    <?php require_once("components/header.php") ?>
+    <?php include PUBLIC_PATH . '/components/header.php'; ?>
 </header>
 
 <main>
@@ -99,11 +90,11 @@ if (isset($_POST['Verstuur'])) {
             <div class="tweedeRijInfo">
                 <div class="informatieFrame">
                     <h2 class="grijsText">Gebruikersnaam</h2>
-                    <input class="Toevoegen-Rij" value="<?php echo htmlspecialchars($current_user); ?>" type="text" name="username" required>
+                    <input class="Toevoegen-Rij" value="<?= htmlspecialchars($current_user ?? '') ?>" type="text" name="username" required>
                 </div>
                 <div class="informatieFrame">
                     <h2 class="grijsText">Achternaam</h2>
-                    <input class="Toevoegen-Rij" value="<?php echo htmlspecialchars($lastName); ?>" type="text" name="lastName" required>
+                    <input class="Toevoegen-Rij" value="<?= htmlspecialchars($lastName ?? '') ?>" type="text" name="lastName">
                 </div>
                 <div class="informatieFrame">
                     <h2 class="grijsText">Nieuw wachtwoord</h2>
@@ -114,15 +105,15 @@ if (isset($_POST['Verstuur'])) {
             <div class="tweedeRijInfo">
                 <div class="informatieFrame">
                     <h2 class="grijsText">Email</h2>
-                    <input class="Toevoegen-Rij" value="<?php echo htmlspecialchars($email); ?>" type="email" name="email" required>
+                    <input class="Toevoegen-Rij" value="<?= htmlspecialchars($email ?? '') ?>" type="email" name="email" required>
                 </div>
                 <div class="informatieFrame">
                     <h2 class="grijsText">Registratiedatum</h2>
-                    <h2><?php echo htmlspecialchars($registration_date); ?></h2>
+                    <h2><?= htmlspecialchars($registration_date ?? '') ?></h2>
                 </div>
                 <div class="informatieFrame">
                     <h2 class="grijsText">GebruikerID</h2>
-                    <h2><?php echo htmlspecialchars($user_id); ?></h2>
+                    <h2><?= htmlspecialchars($user_id ?? '') ?></h2>
                 </div>
             </div>
         </form>

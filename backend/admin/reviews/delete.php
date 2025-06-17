@@ -1,12 +1,9 @@
 <?php
-session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     die("Je hebt geen toestemming om deze actie uit te voeren.");
 }
-
-require '../../conn.php';
 
 $review_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 // if (empty($_SESSION['is_admin'])) {
 //     header("Location: ../../vakanties.php");

@@ -1,12 +1,19 @@
 <?php
-session_start();
-// Unset all session variables
-$_SESSION = array();
+// Laad init.php om constante paden beschikbaar te maken
+require_once __DIR__ . '/../../config/init.php';
 
-// Destroy the session
+// Start sessie (alleen als deze nog niet is gestart)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Leeg alle sessievariabelen
+$_SESSION = [];
+
+// Verwijder de sessie zelf
 session_destroy();
 
-// Redirect to homepage or login page
-header("Location: ../index.php");
+// Redirect naar homepage
+header("Location: " . ROOT_URL . "/index.php");
 exit;
 ?>

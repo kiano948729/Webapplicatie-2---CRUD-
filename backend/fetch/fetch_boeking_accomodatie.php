@@ -1,7 +1,6 @@
 <?php
 // Verbind met de database
-require 'conn.php';
-
+require_once __DIR__ . '/../../config/init.php';
 // Query om bestemmingen uit de database op te halen
 $sql = "SELECT * FROM boeking_accommodaties";
 

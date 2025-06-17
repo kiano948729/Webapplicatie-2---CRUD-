@@ -1,6 +1,5 @@
 <?php
-session_start();
-require '../../conn.php';
+require_once __DIR__ . '../../../../config/init.php';
 
 
 // Controleer of gebruiker admin is
@@ -48,27 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Verwijder de recensie
                 $stmt = $conn->prepare("DELETE FROM accommodatie_reviews WHERE review_id = :id");
                 $stmt->execute([':id' => $review_id]);
-                header("Location: admin_recensies.php");
+                header("Location: ../admin.php");
                 exit;
 
             case 'approve':
                 // Zet approved op 1
                 $stmt = $conn->prepare("UPDATE accommodatie_reviews SET approved = 1 WHERE review_id = :id");
                 $stmt->execute([':id' => $review_id]);
-                header("Location: review_edit.php?id=$review_id");
+                header("Location: edit.php?id=$review_id");
                 exit;
 
             case 'disapprove':
                 // Zet approved op 0
                 $stmt = $conn->prepare("UPDATE accommodatie_reviews SET approved = 0 WHERE review_id = :id");
                 $stmt->execute([':id' => $review_id]);
-                header("Location: review_edit.php?id=$review_id");
+                header("Location: edit.php?id=$review_id");
                 exit;
         }
     }
 
     // Herlaad de pagina met bijgewerkte data
-    header("Location: review_edit.php?id=$review_id");
+    header("Location: edit.php?id=$review_id");
     exit;
 }
 ?>
@@ -132,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <br>
-    <a href="admin_recensies.php">Terug naar overzicht</a>
+    <a href="../admin.php">Terug naar overzicht</a>
 
 </body>
 </html>

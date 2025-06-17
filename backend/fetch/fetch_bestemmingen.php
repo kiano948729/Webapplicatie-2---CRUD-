@@ -1,5 +1,5 @@
 <?php
-require 'databaseConnect.php';
+require_once __DIR__ . '/../../config/init.php';
 
 // Ontvang GET-parameters
 $locatie = $_GET['locatie'] ?? '';

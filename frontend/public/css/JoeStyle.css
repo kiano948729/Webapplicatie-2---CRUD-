@@ -609,11 +609,11 @@ input:focus {
 
 .privacyMain {
     overflow-y: auto;
-    height: 600px;
+    height: 100%;
 }
 .indexMain {
     overflow-y: auto;
-    height: 600px;
+    height: 90%;
 }
 
 .titelCenter {
@@ -732,4 +732,25 @@ input:focus {
     .loginTextFrame {
         margin-left: 20px !important;
     }
+}
+.alignsearch{
+    display: flex;
+    justify-content: center;
+}
+.error-message {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #cc0000;
+    font-weight: bold;
+}
+
+.success-message {
+    background-color: #e6ffe6;
+    color: #006600;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #009900;
+    font-weight: bold;
 }
