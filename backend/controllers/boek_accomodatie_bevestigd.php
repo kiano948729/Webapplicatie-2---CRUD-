@@ -57,7 +57,7 @@ try {
         <p><strong>Aantal personen:</strong> <?= htmlspecialchars($boeking['aantal_personen']) ?></p>
         <p><strong>Totaalbedrag:</strong> &euro; <?= number_format($boeking['total_price'], 2, ',', '.') ?></p>
 
-        <a href="../vakanties.php">Terug naar overzicht</a>
+        <a href="../../frontend/templates/vakanties.php">Terug naar overzicht</a>
     </div>
 </body>
 

@@ -82,13 +82,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Functie om de show-more knoppen te koppelen
 function koppelShowMoreKnoppen() {
     document.querySelectorAll('.show-more-btn').forEach(button => {
         button.addEventListener('click', () => {
             const id = button.getAttribute('data-id');
             const overlay = document.getElementById(`expanded-${id}`);
-            if (overlay) {
+
+            if (!overlay) {
+                // Overlay nog niet geladen, haal hem op via AJAX
+                fetch(`backend/ajax_get_accommodatie_overlay.php?id=${id}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.body.insertAdjacentHTML('beforeend', html);
+                        document.getElementById(`expanded-${id}`).style.display = 'block';
+                    })
+                    .catch(error => {
+                        console.error("Fout bij laden overlay:", error);
+                        alert("Er ging iets fout bij het tonen van meer informatie.");
+                    });
+            } else {
                 overlay.style.display = 'block';
             }
         });
@@ -144,6 +156,7 @@ function resetFilters() {
     fetch('backend/fetch_bestemmingen.php?' + query)
         .then(response => response.text())
         .then(html => {
+                console.log("HTML van zoekresultaat:", html);
             document.getElementById('vakantieResultaten').innerHTML = html;
             koppelShowMoreKnoppen();
         });

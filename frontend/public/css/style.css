@@ -1354,3 +1354,230 @@ label {
 .reset-filter-btn:hover {
     background-color: #e0e0e0;
 }
+/* ============================= */
+/*  Media Queries – Responsive Design */
+/* ============================= */
+
+/* === Kleine Tablets & iPads (Landscape) | 768px - 1023px === */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .index-main-nav {
+        font-size: 0.9rem;
+    }
+
+    .vakantie-kaart h3 {
+        font-size: 1rem;
+    }
+
+    .sidebar-main {
+        flex-direction: row;
+    }
+
+    .sidebar-nav {
+        width: 25%;
+    }
+
+    .sidebar {
+        width: 75%;
+    }
+
+    .content-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .filter-rechts select,
+    .invoer-blok input {
+        font-size: 0.85rem;
+    }
+}
+
+/* === Tablets & iPads (Portret) | 481px - 768px === */
+@media (max-width: 768px) {
+    nav {
+        padding: var(--gap-sm) var(--gap-md);
+    }
+
+    .index-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .index-main-nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: var(--gap-sm);
+    }
+
+    .index-main-nav a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .index-Frame-Login {
+        justify-content: center;
+        width: 100%;
+        margin-top: var(--gap-sm);
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .logged-in-user {
+        margin: var(--gap-sm) 0 0;
+    }
+
+    .vakanties-main-blok form {
+        gap: var(--gap-sm);
+    }
+
+    .vakantie-kaart img {
+        height: 140px;
+    }
+
+    .booking-card img {
+        height: 140px;
+    }
+
+    .thema-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mini-dashboard {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .reviews-container {
+        flex-wrap: nowrap;
+    }
+
+    .review-item {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .event-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .deals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+/* === Mobiele Telefoons (max-width: 480px) === */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav {
+        padding: var(--gap-sm);
+    }
+
+    .index-Frame-Logo a {
+        font-size: 1.3rem;
+    }
+
+    .index-main-nav {
+        flex-direction: column;
+    }
+
+    .index-main-nav a {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .index-Frame-Login {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .index-Frame-Login span,
+    .index-Frame-Login a {
+        text-align: center;
+        width: 100%;
+    }
+
+    .content-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .filter-knop {
+        width: 100%;
+        text-align: center;
+    }
+
+    .vakanties-main-blok {
+        margin: var(--gap-md);
+        padding: var(--gap-md);
+    }
+
+    .vakanties-main-blok .zoek-knop button {
+        width: 100%;
+    }
+
+    .invoer-blok input,
+    .filter-rechts select {
+        font-size: 0.8rem;
+    }
+
+    .vakantie-kaart img {
+        height: 120px;
+    }
+
+    .booking-card img {
+        height: 120px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        gap: var(--gap-md);
+    }
+
+    .deals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .thema-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .review-item {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-btn {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    .side-bar-main-navigatie a {
+        font-size: 1rem;
+    }
+
+    .sidebar {
+        padding: var(--gap-md);
+    }
+
+    .sidebar h1 {
+        font-size: 1.3rem;
+    }
+
+    .success-message {
+        top: 10px;
+        width: 90%;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
